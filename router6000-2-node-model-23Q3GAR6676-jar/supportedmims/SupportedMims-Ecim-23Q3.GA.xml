@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ManagementInformationModelInformation oss_common:ns="Router6000-2" oss_common:name="SupportedMims-Ecim"
+  oss_common:version="23Q3.GA" xmlns="urn:com:ericsson:schema:xml:oss:cfm_miminfo" xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:com:ericsson:schema:xml:oss:cfm_miminfo cfm_miminfo.xsd ">
+
+  <oss_common:modelCreationInfo author="Quarks" creationDate="18/08/2023">
+    <oss_common:designedModel componentId="router6000-2-node-model-23Q3GAR6676-jar"/>
+  </oss_common:modelCreationInfo>
+
+  <oss_common:desc>This is the MIM Info model for Network Element type="ER6676" for 23Q3
+  </oss_common:desc>
+
+  <supportedMims>
+    <mimMappedTo namespace="ComFm" version="12.0.0" referenceMimNamespace="ECIM_FM" referenceMimVersion="4.0.0"/>
+    <mimMappedTo namespace="ComSysM" version="3.2.3" referenceMimNamespace="ECIM_SysM" referenceMimVersion="3.2.0"/>
+    <mimMappedTo namespace="ComTop" version="10.10.2" referenceMimNamespace="ECIM_Top" referenceMimVersion="2.1.1"/>
+    <mimMappedTo namespace="ComSecM" version="11.1.1" referenceMimNamespace="ECIM_Security_Management" referenceMimVersion="2.1.0"/>
+    <mimMappedTo namespace="Lm_MOM" version="6.3.0" referenceMimNamespace="ECIM_LM" referenceMimVersion="3.1.0" originalModelUrn="/net_momdtd/Lm_MOM/Lm_MOM_6_3_0"/>
+  </supportedMims>
+</ManagementInformationModelInformation>
+

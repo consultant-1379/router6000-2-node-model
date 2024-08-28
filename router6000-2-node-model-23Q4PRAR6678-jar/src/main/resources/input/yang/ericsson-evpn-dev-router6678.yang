@@ -1,0 +1,46 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-evpn-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-evpn-dev-router6678";
+
+  prefix "evpndevrouter6678";
+
+  import ericsson-evpnpeer-router6000{
+    prefix "evpnpeerrouter6000";
+  }
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+  import ericsson-contexts-router6000 {
+   prefix "ctxsr6k";
+  }
+  import ericsson-context-router6000 {
+   prefix "ctxr6k";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-evpn-dev-router6678
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-11-15" {
+    description
+      "evpn peer profile tunnels ldp and rsvp not supported";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+}

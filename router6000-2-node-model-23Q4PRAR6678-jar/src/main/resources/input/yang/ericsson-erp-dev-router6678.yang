@@ -1,0 +1,50 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-erp-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-erp-dev-router6678";
+
+  prefix "erpdevrouter6678";
+
+  import ericsson-erp-router6000{
+    prefix "erprouter6000";
+  }
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+  import ericsson-contexts-router6000 {
+   prefix "ctxsr6k";
+  }
+  import ericsson-context-router6000 {
+   prefix "ctxr6k";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-erp-dev-router6678
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-11-15" {
+    description
+      "erps chain not supported";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+   /*ERPS chain not supported*/
+    deviation "/ctxsr6k:contexts/erprouter6000:ethernet-ring" {
+      deviate not-supported;
+    }
+}

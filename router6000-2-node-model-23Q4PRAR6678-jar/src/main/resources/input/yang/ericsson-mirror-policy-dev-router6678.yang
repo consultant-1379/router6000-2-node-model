@@ -1,0 +1,64 @@
+module ericsson-mirror-policy-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-mirror-policy-dev-router6678";
+
+  prefix "mirrorpolicyr6678";
+
+  import ericsson-mirror-policy-router6000 {
+    prefix "mirrorpolrouter6000";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+  
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  
+  organization
+    "Ericsson";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-mirror-policy-dev-router6678
+     Copyright (c) 2021 Ericsson AB.
+     All rights reserved";
+
+  revision "2021-02-25" {
+    description
+      "deviation replace for mirror-policy-choice
+       add item 'lag' than origin enumeration";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  deviation "/ctxsr6k:contexts/mirrorpolrouter6000:mirror-policy/mirrorpolrouter6000:mirror-policy-choice" {
+    deviate replace {
+      type enumeration {
+        enum port {
+          value 0;
+          description
+            "Configure port mirror policy";
+        }
+        enum circuit {
+          value 1;
+          description
+            "Configure circuit mirror policy";
+        }
+        enum lag {
+          value 2;
+          description
+            "Configure lag mirror policy";
+        }
+      }
+    }
+  }
+}

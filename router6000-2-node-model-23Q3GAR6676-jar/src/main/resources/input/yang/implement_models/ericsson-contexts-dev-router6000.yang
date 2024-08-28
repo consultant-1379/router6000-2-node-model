@@ -1,0 +1,126 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-contexts-dev-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-contexts-dev-router6000";
+
+  prefix "ctxsvrouter6000";
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-contexts-dev-router6000
+     Copyright (c) 2016 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-07-28" {
+    description
+      "Removed deviation for flow-label";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "1";
+    yexte:correction "4";
+  }
+
+  revision "2022-02-21" {
+    description
+      "Modified deviation for prefer-local-egress";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "1";
+    yexte:correction "3";
+  }
+
+  revision "2022-01-21" {
+    description
+      "Add deviation for flow-label and prefer-local-egress";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "1";
+    yexte:correction "2";
+  }
+
+  revision "2021-01-29" {
+    description
+      "remove deviation for ifindex-persistence";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "1";
+    yexte:correction "1";
+  }
+
+  revision "2019-07-24" {
+    description
+      "Disable mpls-payload leaf under service load-balance-new";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+  revision "2019-02-13" {
+    description
+      "Disable ifindex-persistence leaf";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  revision "2018-06-05" {
+    description
+      "Change the module namespace";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  revision "2017-09-12" {
+    description
+      "deviation for ericsson-contexts-ipos.yang";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+  revision "2017-06-08" {
+    description
+      "deviation for ericsson-context-state-ipos.yang.";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  /*hide global->service->load-balance-new->prefer-local-egress*/
+  deviation "/ctxsr6k:contexts/ctxsr6k:service/ctxsr6k:load-balance-new/ctxsr6k:prefer-local-egress" {
+    deviate not-supported;
+  }
+
+}

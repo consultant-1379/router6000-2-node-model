@@ -1,0 +1,196 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-synchronization-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-synchronization-dev-router6678";
+
+  prefix "syncvrouter6678";
+
+  import ericsson-synchronization-router6000 {
+    prefix "syncr6000";
+  }
+
+  import ericsson-contexts-router6000 {
+   prefix "ctxsr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-synchronization-dev-router6678
+     Copyright (c) 2016 Ericsson AB.
+     All rights reserved";
+
+  revision "2023-07-11" {
+    description
+      "add deviation so as not to display syncr6000:equipment-clock/syncr6000:g781";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "5";
+    yexte:correction "3";
+  }
+
+  revision "2023-06-29" {
+    description
+      "remove deviation for frequency-deviation-threshold/afts/asymmetry-delay-compensation";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "5";
+    yexte:correction "2";
+  }
+
+  revision "2023-06-26" {
+    description
+      "unsupported for synchronization equipment-clock input-source-choice bits";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "4";
+    yexte:correction "2";
+  }
+
+  revision "2023-06-14" {
+    description
+      "unsupported for synchronization bits";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "4";
+    yexte:correction "1";
+  }
+
+  revision "2023-05-18" {
+    description
+      "unsupported for export-link-delay";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "4";
+    yexte:correction "0";
+  }
+
+  revision "2023-02-23" {
+    description
+      "unsupported for g8265-1-slave and g8275-2-t-bc-p";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "3";
+    yexte:correction "0";
+  }
+
+  revision "2022-07-06" {
+    description
+      "supported for gnss-dampening and hold-off";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "2";
+    yexte:correction "0";
+  }
+
+  revision "2022-05-26" {
+    description
+      "remove deviation for gnss-dampening and hold-off";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "1";
+  }
+
+  revision "2021-11-08" {
+    description
+      "unsupported for gnss-dampening and hold-off";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+
+  revision "2021-10-18" {
+    description
+      "Add deviation for gnss-dampening and hold-off";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+  revision "2020-04-07" {
+    description
+      "deviation for ericsson-synchronization-router6000 file.";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:ptp-port/syncr6000:port-id" {
+    deviate replace {
+      type uint16 {
+        range "1..128";
+      }
+    }
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:g8275-2-t-bc-p/syncr6000:ptp-port/syncr6000:port-id" {
+    deviate replace {
+      type uint16 {
+        range "1..128";
+      }
+    }
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:v1588v2-boundary/syncr6000:v1588v2-boundary/syncr6000:ptp-port/syncr6000:ptp-port" {
+    deviate replace {
+      type uint16 {
+        range "1..128";
+      }
+    }
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:g8275-2-t-bc-p" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:g8265-1-slave" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:ptp-port/syncr6000:export-link-delay" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:bits" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:ptp-port/syncr6000:afts" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:ptp-port/syncr6000:asymmetry-delay-compensation" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:ptp-clock/syncr6000:ptp-clock/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:g8275-1-t-bc/syncr6000:frequency-deviation-threshold" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:equipment-clock/syncr6000:input-source/syncr6000:input-source-choice/syncr6000:external-bits-a" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:equipment-clock/syncr6000:input-source/syncr6000:input-source-choice/syncr6000:external-bits-b" {
+    deviate not-supported;
+  }
+  deviation "/ctxsr6k:contexts/syncr6000:synchronization/syncr6000:equipment-clock/syncr6000:g781" {
+    deviate not-supported;
+  }
+}

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2014 Ericsson AB. 
+	All rights reserved 
+
+	DX ECIM Tool-chain generated this file on Jun 25, 2014 11:19:35 AM using:
+	* com.ericsson.ecim.m2m 2.9.1.201402031455
+	* com.ericsson.ecim.dsl 2.9.1.201402031455
+	* com.ericsson.ecim.edm 2.9.1.201402031455
+--><!DOCTYPE models SYSTEM "mp.dtd">
+<models>
+    <dtdVersion>G</dtdVersion>
+    <momMetaData>
+        <momTitle>Context Model</momTitle>
+        <momSubTitle>Context configuration model</momSubTitle>
+        <momIdentity>
+            <docNum>1</docNum>
+            <docLang>English</docLang>
+            <docRev>0</docRev>
+            <docDate>2013-01-01</docDate>
+        </momIdentity>
+        <createdBy>
+            <signature>Péter Elek, József Galajda</signature>
+        </createdBy>
+    </momMetaData>
+    <mim author="József Galajda" contact="EADNYUN" correction="0" date="2013-01-01" docNo="" name="Context" namespace="urn:com:ericsson:ecim:Context" namespacePrefix="context" organization="" release="0" revision="2" version="1">
+        <description>Context configuration managed object model.&#13;
+</description>
+        <derivedDataType name="RouteDistinguisher">
+            <description>String type for VPN-RD.&#13;
+&#13;
+VPN-RD must be in the following format: AS-number:number. The AS-number is a 2-byte value; the number is any 4-byte value.</description>
+            <baseType>
+                <string>
+                    <validValues>([0-9]+:[0-9]+)</validValues>
+                </string>
+            </baseType>
+        </derivedDataType>
+        <derivedDataType name="ContextName">
+            <description>Type of the Context name.</description>
+            <domainExtension domain="ECIM">
+                <extension name="originatingMimRelease" value="0"/>
+                <extension name="originatingMimName" value="IposCommonLibrary"/>
+                <extension name="originatingMimVersion" value="1"/>
+            </domainExtension>
+            <baseType>
+                <string>
+                    <lengthRange>
+                        <min>1</min>
+                        <max>63</max>
+                    </lengthRange>
+                </string>
+            </baseType>
+        </derivedDataType>
+        <class name="Context">
+            <description>Configure an operational context.</description>
+            <root/>
+            <attribute name="contextNameId">
+                <description>Specify a named context to configure, or specify local.</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <derivedDataTypeRef name="ContextName">
+                        <mimName>Context</mimName>
+                    </derivedDataTypeRef>
+                </dataType>
+            </attribute>
+            <attribute name="description">
+                <description>Add descriptive text for the context.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <noNotification/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="vpnRd">
+                <description>Configure the VPN route distinguisher for the context.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <noNotification/>
+                <isNillable/>
+                <dataType>
+                    <derivedDataTypeRef name="RouteDistinguisher">
+                        <mimName>Context</mimName>
+                    </derivedDataTypeRef>
+                </dataType>
+            </attribute>
+            <attribute name="contextId">
+                <description>The internal RCM identifier for the context.&#13;
+&#13;
+It is generated internally; it cannot be set on create or on update.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <noNotification/>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <uint32/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="Domain">
+            <description>Add a subscriber service domain alias to the context.</description>
+            <attribute name="domainNameId">
+                <description>Specify the name of the subscriber service domain alias in the context.</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="advertise">
+                <description>Advertise the subscriber service domain alias in PPPoE discovery.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <noNotification/>
+                <isNillable/>
+                <dataType>
+                    <boolean>
+                        <defaultValue>false</defaultValue>
+                    </boolean>
+                </dataType>
+            </attribute>
+        </class>
+        <relationship name="Context_to_Domain">
+            <containment>
+                <parent>
+                    <hasClass name="Context">
+                        <mimName>Context</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="Domain">
+                        <mimName>Context</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                    </cardinality>
+                </child>
+            </containment>
+        </relationship>
+    </mim>
+    <interMim>
+        <relationship name="ManagedElement_to_Context">
+            <containment>
+                <parent>
+                    <hasClass name="ManagedElement">
+                        <mimName>ComTop</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="Context">
+                        <mimName>Context</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>1</min>
+                        <max>8191</max>
+                    </cardinality>
+                </child>
+            </containment>
+        </relationship>
+    </interMim>
+</models>

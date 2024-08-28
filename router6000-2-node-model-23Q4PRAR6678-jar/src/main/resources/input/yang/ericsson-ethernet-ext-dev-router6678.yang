@@ -1,0 +1,370 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-ethernet-ext-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-ethernet-ext-dev-router6678";
+
+  prefix "ethxvrouter6678";
+
+  import ericsson-ethernet-ext-router6000{
+    prefix "ethxrouter6000";
+  }
+
+  import ietf-interfaces {
+    prefix "if";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-ethernet-ext-dev-router6678
+     Copyright (c) 2021 Ericsson AB.
+     All rights reserved";
+
+  revision "2021-04-28" {
+    description
+      "fix storm-control xpath";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "3";
+  }
+
+  revision "2020-07-24" {
+    description
+      "modify storm-control deviation";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "2";
+  }
+
+  revision "2020-05-26" {
+    description
+      "modify ethernet speed deviation";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+
+  revision "2020-04-07" {
+    description
+      "deviation for ericsson-ethernet-ext-router6000.yang.";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  /*hide port clips-pvc*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:clips-pvc" {
+    deviate not-supported;
+  }
+
+  /*hide port -> ipv6-multicast-maximum-bandwidth*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:ipv6-multicast-maximum-bandwidth" {
+   deviate not-supported;
+  }
+
+  /*hide port -> duplex*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:duplex" {
+    deviate not-supported;
+  }
+
+  /*devaition port -> strom-control*/
+  /*R6678: 1ge: change range from "35..2000000" to "10..2000000"*/
+  /*R6678: 10ge:change range from "35..2000000" to "10..20000000"*/
+  /*R6678: 25ge:change range from "35..2000000" to "10..50000000"*/
+  /*R6678: 25ge-qsa:change range from "35..2000000" to "10..50000000"*/
+  /*R6678: 40ge:change range from "35..2000000" to "10..65000000"*/
+  /*R6678: 100ge:change range from "35..2000000" to "10..65000000"*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control/ethxrouter6000:storm-control"
+    + "/ethxrouter6000:pps/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate" {
+     deviate add {
+        must "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '1ge') and "
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate <= 2000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '10ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate <= 20000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate >= 10)) or"
+	+ "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate <= 50000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate >= 10)) or"
+	+ "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge-qsa') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate <= 50000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '40ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate <= 65000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate >= 10)) or"
+	+ "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '100ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate <= 65000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:unknown-dest-rate >= 10))" {
+        description "differentiate unkown-dest-rate for 1ge/10ge/25ge/25ge-qsa/40ge/100ge port under storm-control pps mode";
+       }
+    }
+  }
+
+  /*R6678: 1ge: change range from "35..2000000" to "10..2000000"*/
+  /*R6678: 10ge:change range from "35..2000000" to "10..20000000"*/
+  /*R6678: 25ge:change range from "35..2000000" to "10..50000000"*/
+  /*R6678: 25ge-qsa:change range from "35..2000000" to "10..50000000"*/
+  /*R6678: 40ge:change range from "35..2000000" to "10..65000000"*/
+  /*R6678: 100ge:change range from "35..2000000" to "10..65000000"*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control/ethxrouter6000:storm-control"
+  + "/ethxrouter6000:pps/ethxrouter6000:pps/ethxrouter6000:multicast-rate" {
+    deviate add {
+        must "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '1ge') and "
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate <= 2000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '10ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate <= 20000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate <= 50000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge-qsa') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate <= 50000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '40ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate <= 65000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '100ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate <= 65000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:multicast-rate >= 10))" {
+        description "differentiate multicast-rate for 1ge/10ge/25ge/25ge-qsa/40ge/100ge port under storm-control pps mode";
+       }
+    }
+  }
+
+  /*R6678: 1ge: change range from "35..2000000" to "10..2000000"*/
+  /*R6678: 10ge:change range from "35..2000000" to "10..20000000"*/
+  /*R6678: 25ge:change range from "35..2000000" to "10..50000000"*/
+  /*R6678: 25ge-qsa:change range from "35..2000000" to "10..50000000"*/
+  /*R6678: 40ge:change range from "35..2000000" to "10..65000000"*/
+  /*R6678: 100ge:change range from "35..2000000" to "10..65000000"*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control/ethxrouter6000:storm-control"
+  + "/ethxrouter6000:pps/ethxrouter6000:pps/ethxrouter6000:broadcast-rate" {
+    deviate add {
+        must "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '1ge') and "
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate <= 2000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '10ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate <= 20000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate <= 50000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge-qsa') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate <= 50000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '40ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate <= 65000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '100ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate <= 65000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:pps/ethxrouter6000:broadcast-rate >= 10))" {
+        description "differentiate broadcast-rate for 1ge/10ge/25ge/25ge-qsa/40ge/100ge port under storm-control pps mode";
+       }
+    }
+  }
+
+  /*R6678:1ge: change range from "18..1000000" to "10..1000000"*/
+  /*R6678:10ge: change range from "18..1000000" to "10..10000000"*/
+  /*R6678:25ge: change range from "18..1000000" to "10..25000000"*/
+  /*R6678:25ge-qsa: change range from "18..1000000" to "10..25000000"*/
+  /*R6678:40ge: change range from "18..1000000" to "10..40000000"*/
+  /*R6678:100ge: change range from "18..1000000" to "10..100000000"*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control/ethxrouter6000:storm-control"
+  + "/ethxrouter6000:kbps/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate" {
+    deviate add {
+        must "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '1ge') and "
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate <= 1000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '10ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate <= 10000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate <= 25000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge-qsa') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate <= 25000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '40ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate <= 40000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '100ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate <= 10000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:unknown-dest/ethxrouter6000:rate >= 10))" {
+        description "differentiate unknown-dest-rate for 1ge/10ge/25ge/25ge-qsa/40ge/100ge port under storm-control kbps mode";
+       }
+    }
+  }
+
+  /*R6678:1ge: change range from "18..1000000" to "10..1000000"*/
+  /*R6678:10ge: change range from "18..1000000" to "10..10000000"*/
+  /*R6678:25ge: change range from "18..1000000" to "10..25000000"*/
+  /*R6678:25ge-qsa: change range from "18..1000000" to "10..25000000"*/
+  /*R6678:40ge: change range from "18..1000000" to "10..40000000"*/
+  /*R6678:100ge: change range from "18..1000000" to "10..100000000"*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control/ethxrouter6000:storm-control"
+  + "/ethxrouter6000:kbps/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate" {
+    deviate add {
+        must "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '1ge') and "
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate <= 1000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '10ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate <= 10000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate <= 25000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge-qsa') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate <= 25000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '40ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate <= 40000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '100ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate <= 10000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:multicast/ethxrouter6000:rate >= 10))" {
+        description "differentiate multicast-rate for 1ge/10ge/25ge/25ge-qsa/40ge/100ge port under storm-control kbps mode";
+       }
+    }
+  }
+
+  /*R6678:1ge: change range from "18..1000000" to "10..1000000"*/
+  /*R6678:10ge: change range from "18..1000000" to "10..10000000"*/
+  /*R6678:25ge: change range from "18..1000000" to "10..25000000"*/
+  /*R6678:25ge-qsa: change range from "18..1000000" to "10..25000000"*/
+  /*R6678:40ge: change range from "18..1000000" to "10..40000000"*/
+  /*R6678:100ge: change range from "18..1000000" to "10..100000000"*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control/ethxrouter6000:storm-control"
+  + "/ethxrouter6000:kbps/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate" {
+    deviate add {
+        must "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '1ge') and "
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate <= 1000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '10ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate <= 10000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate <= 25000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '25ge-qsa') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate <= 25000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '40ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate <= 40000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate >= 10)) or"
+        + "((/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type = '100ge') and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate <= 10000000) and"
+        + "(/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:storm-control"
+        + "/ethxrouter6000:kbps/ethxrouter6000:broadcast/ethxrouter6000:rate >= 10))" {
+        description "differentiate broadcast-rate for 1ge/10ge/25ge/25ge-qsa/40ge/100ge port under storm-control kbps mode";
+       }
+    }
+  }
+
+   deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:mirror/ethxrouter6000:mirror/ethxrouter6000:policy/ethxrouter6000:policy/ethxrouter6000:source-tag" {
+    deviate not-supported;
+  }
+
+  /*hide port -> subscribe-micro-bfd*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:subscribe-micro-bfd" {
+    deviate not-supported;
+  }
+
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ethxrouter6000:port-type" {
+    deviate add {
+         default "1ge";
+     }
+  }
+}

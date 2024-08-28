@@ -1,0 +1,63 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-bridge-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-bridge-dev-router6678";
+
+  prefix "bridgevrouter6678";
+
+  import ericsson-bridge-router6000{
+    prefix "bridgerouter6000";
+  }
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+  import ericsson-contexts-router6000 {
+   prefix "ctxsr6k";
+  }
+  import ericsson-context-router6000 {
+   prefix "ctxr6k";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-bridge-dev-router6678
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-11-14" {
+    description
+      "Modify copyright";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+  revision "2020-11-30" {
+    description
+      "proxy arp and proxy nd clis not supported";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  /*proxy arp and proxy nd clis are not supported*/
+   deviation "/bridgerouter6000:bridge/bridgerouter6000:bridge-instance/bridgerouter6000:evpn-instance/bridgerouter6000:proxy-arp" {
+     deviate not-supported;
+   }
+
+   deviation "/bridgerouter6000:bridge/bridgerouter6000:bridge-instance/bridgerouter6000:evpn-instance/bridgerouter6000:proxy-nd" {
+     deviate not-supported;
+   }
+}

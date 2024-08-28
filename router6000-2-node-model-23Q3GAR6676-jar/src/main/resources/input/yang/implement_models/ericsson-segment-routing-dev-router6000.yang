@@ -1,0 +1,59 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-segment-routing-dev-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-segment-routing-dev-router6000";
+
+  prefix "sgrtvrouter6000";
+
+  import ericsson-segment-routing-router6000 {
+    prefix "sgrtrouter6000";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-context-router6000 {
+    prefix "ctxr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-segment-routing-router6000
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-09-20" {
+    description
+      "Remove deviate for srv6";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+  revision "2021-12-22" {
+    description
+      "Add deviate for srv6";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+}

@@ -1,0 +1,47 @@
+module ericsson-ipfix-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-ipfix-dev-router6678";
+  prefix "ipfixdevr6678";
+
+  import ietf-ipfix-psamp { prefix "ipfix"; }
+  import ericsson-yang-extensions { prefix "yexte"; }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ietf-ipfix-psamp-dev-router6678
+     Copyright (c) 2021 Ericsson AB.
+     All rights reserved";
+
+  revision "2021-05-20" {
+    description
+      "initial version
+       disable the unsupported leaves on ietf-ipfix";
+    reference
+      "rfc6728";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  deviation "/ipfix:ipfix/ipfix:observationPoint/ipfix:direction" {
+    deviate replace {
+       type enumeration {
+         enum ingress {
+           description "This value is used for monitoring incoming
+             packets.";
+         }
+         enum egress {
+           description "This value is used for monitoring outgoing
+             packets.";
+         }
+       }
+       default "ingress";
+    }
+  }
+}

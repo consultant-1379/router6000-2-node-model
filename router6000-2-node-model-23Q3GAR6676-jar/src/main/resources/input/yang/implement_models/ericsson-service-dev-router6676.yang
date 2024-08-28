@@ -1,0 +1,63 @@
+module ericsson-service-dev-router6676 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-service-dev-router6676";
+
+  prefix "servicevR6676";
+
+  import ericsson-service-router6000 {
+   prefix "servicer6k";
+  }
+
+  import ericsson-context-router6000 {
+   prefix "ctxr6k";
+  }
+
+  import ericsson-contexts-router6000 {
+   prefix "ctxsr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-service-dev-router6676
+     Copyright (c) 2020 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-12-05" {
+    description
+      "deviation alarm-suppression power-module-missing";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+  revision "2020-06-22" {
+    description
+      "deviation for ericsson-service-router6000.yang file";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  deviation "/ctxsr6k:contexts/ctxr6k:context/servicer6k:service/servicer6k:netconf-server" {
+    deviate not-supported;
+  }
+
+  deviation "/ctxsr6k:contexts/ctxsr6k:service/servicer6k:alarm-suppression/servicer6k:power-module-missing" {
+    deviate not-supported;
+  }
+
+}

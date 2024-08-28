@@ -1,0 +1,49 @@
+module ericsson-dhcpv6-dev-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-dhcpv6-dev-router6000";
+
+  prefix "ctxdhcpv6devr6k";
+
+  import ericsson-dhcpv6-router6000 {
+    prefix "ctxdhcpv6router6000";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-context-router6000 {
+    prefix "ctxr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact 
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-dhcpv6-router6000
+     Copyright (c) 2019 Ericsson AB.
+     All rights reserved";
+
+  revision "2021-05-12" {
+    description
+      "Add deviation for prefix ipv6 configuration";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+  
+  deviation "/ctxsr6k:contexts/ctxr6k:context/ctxdhcpv6router6000:dhcpv6/ctxdhcpv6router6000:server/ctxdhcpv6router6000:prefix" {
+     deviate not-supported;
+  }
+
+}

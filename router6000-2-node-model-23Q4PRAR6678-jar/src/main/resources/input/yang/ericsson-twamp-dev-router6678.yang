@@ -1,0 +1,56 @@
+module ericsson-twamp-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-twamp-dev-router6678";
+
+  prefix "twamprouter6678";
+
+  import ericsson-twamp-router6000 {
+   prefix "twampr6k";
+  }
+
+  import ericsson-contexts-router6000 {
+   prefix "ctxsr6k";
+  }
+
+  import ericsson-context-router6000 {
+   prefix "ctxr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-twamp-dev-router6678
+     Copyright (c) 2015-2022 Ericsson AB.
+     All rights reserved";
+
+   revision "2022-09-09" {
+    description
+      "deviate twamp over rsvp-te funciton";
+    reference
+      "rfc6020";
+      yexte:version "1";
+      yexte:release "0";
+      yexte:correction "0";
+  }
+
+  deviation "/ctxsr6k:contexts/ctxr6k:context/ctxr6k:ippm-twamp/ctxr6k:light/twampr6k:sender/twampr6k:session/twampr6k:session-opt/twampr6k:ipos-choice/twampr6k:ipos-choice-choice/twampr6k:rsvp-te" {
+    deviate not-supported;
+  }
+
+  deviation "/ctxsr6k:contexts/ctxr6k:context/ctxr6k:ippm-twamp/ctxr6k:light/twampr6k:reflector/twampr6k:session/twampr6k:session-opt/twampr6k:ipos-choice/twampr6k:ipos-choice-choice/twampr6k:rsvp-te" {
+    deviate not-supported;
+  }
+
+  deviation "/ctxsr6k:contexts/ctxr6k:context/ctxr6k:ippm-twamp/ctxr6k:light/twampr6k:cont-sender/twampr6k:session/twampr6k:session-opt/twampr6k:ipos-choice/twampr6k:ipos-choice-choice/twampr6k:rsvp-te" {
+    deviate not-supported;
+  }
+}

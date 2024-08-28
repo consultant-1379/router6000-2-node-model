@@ -1,0 +1,248 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-interface-qos-ext-dev-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-interface-qos-ext-dev-router6000";
+
+  prefix "ifqosxvrouter6000";
+
+  import ericsson-interface-qos-ext-router6000 {
+    prefix "ifqosxrouter6000";
+
+  }
+
+  import ericsson-ethernet-ext-router6000 {
+    prefix "ethxrouter6000";
+  }
+
+  import ietf-interfaces {
+    prefix "if";
+  }
+
+  import ericsson-lag-ext-router6000 {
+    prefix "lagxrouter6000";
+  }
+
+  import ericsson-l2vlan-ext-router6000 {
+    prefix "l2vlanxrouter6000";
+  }
+
+  import ericsson-interfaces-ext-router6000 {
+    prefix "ifxrouter6000";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-interface-qos-ext-dev-router6000
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-09-22" {
+    description
+      "hide rate-circuit";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+
+  revision "2022-05-10" {
+    description
+      "add common part for r6000-qos";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  /************************************** link-group **************************************/
+
+  /*hide interfaces->interface->link-group->rate-circuit*/
+  deviation "/if:interfaces/if:interface/lagxrouter6000:link-group/ifqosxrouter6000:rate-circuit" {
+    deviate not-supported;
+  }
+  /*hide if:interfaces/if:interface/lagxrouter6000:link-group->qos->port-queue-depth*/
+  deviation "/if:interfaces/if:interface/lagxrouter6000:link-group/ifqosxrouter6000:qos/ifqosxrouter6000:port-queue-depth" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/lagxrouter6000:link-group->qos->policy->protocol-rate-limit*/
+  deviation "/if:interfaces/if:interface/lagxrouter6000:link-group/ifqosxrouter6000:qos/ifqosxrouter6000:policy/ifqosxrouter6000:protocol-rate-limit" {
+    deviate not-supported;
+  }
+
+  /************************************** link-group-dot1q-pvc **************************************/
+
+  /*hide if:interfaces/if:interface/lagxrouter6000:link-group/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc:-> qos-> rate*/
+  deviation "/if:interfaces/if:interface/lagxrouter6000:link-group/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc/ifqosxrouter6000:qos/ifqosxrouter6000:rate" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/lagxrouter6000:link-group/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc:-> qos-> weight*/
+  deviation "/if:interfaces/if:interface/lagxrouter6000:link-group/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc/ifqosxrouter6000:qos/ifqosxrouter6000:weight" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/lagxrouter6000:link-group/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc:->qos->policy->protocol-rate-limit*/
+  deviation "/if:interfaces/if:interface/lagxrouter6000:link-group/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc/ifqosxrouter6000:qos/ifqosxrouter6000:policy/ifqosxrouter6000:protocol-rate-limit" {
+    deviate not-supported;
+  }
+
+  /*link-group->dot1q->pvc->qos->hierarchical->mode->strict*/
+  /*there is not CLI under link-group*/
+  deviation "/if:interfaces/if:interface/lagxrouter6000:link-group/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc"
+  + "/ifqosxrouter6000:qos/ifqosxrouter6000:hierarchical-mode-strict" {
+      deviate not-supported;
+  }
+
+
+  /************************************** dot1q pvc-list **************************************/
+
+  /*hide interfaces->interface->dot1q->pvc-list->rate-circuit*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc-list/ifqosxrouter6000:rate-circuit" {
+      deviate not-supported;
+  }
+
+  /*dot1q->pvc-list->qos->hierarchical->mode->strict*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc-list"
+  + "/ifqosxrouter6000:qos/ifqosxrouter6000:hierarchical-mode-strict" {
+      deviate not-supported;
+  }
+
+  /*dot1q->pvc-list->flow-apply*/
+  /*hide if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc-list->flow-apply */
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc-list/ifqosxrouter6000:flow-apply" {
+    deviate not-supported;
+  }
+
+  /*dot1q->pvc-list->qos->policy->protocol-rate-limit*/
+  /*hide if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc-list->qos->policy->protocol-rate-limit*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc-list/ifqosxrouter6000:qos/ifqosxrouter6000:policy/ifqosxrouter6000:protocol-rate-limit" {
+    deviate not-supported;
+  }
+
+  /************************************** dot1q->pvc **************************************/
+
+  /*hide interfaces->interface->dot1q->pvc->rate-circuit*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc/ifqosxrouter6000:rate-circuit" {
+      deviate not-supported;
+  }
+
+  /*dot1q->pvc->qos->hierarchical->mode->strict*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc"
+  + "/ifqosxrouter6000:qos/ifqosxrouter6000:hierarchical-mode-strict" {
+      deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc->flow-apply*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc/ifqosxrouter6000:flow-apply" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc->qos->policy->protocol-rate-limit*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc/ifqosxrouter6000:qos/ifqosxrouter6000:policy/ifqosxrouter6000:protocol-rate-limit" {
+    deviate not-supported;
+  }
+
+  /************************************** L3-interface **************************************/
+
+  /************************************** ethernet **************************************/
+
+  /*hide interfaces->interface->ethernet->rate-circuit*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ifqosxrouter6000:rate-circuit" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/ethxrouter6000:ethernet->qos->port-queue-depth*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ifqosxrouter6000:qos/ifqosxrouter6000:port-queue-depth" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/ethxrouter6000:ethernet->qos->policy->protocol-rate-limit*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ifqosxrouter6000:qos/ifqosxrouter6000:policy/ifqosxrouter6000:protocol-rate-limit" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/ethxrouter6000:ethernet->qos->hierarchical->multicast*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ifqosxrouter6000:qos/ifqosxrouter6000:hierarchical/ifqosxrouter6000:multicast" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/ethxrouter6000:ethernet->qos->hierarchical->weight*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ifqosxrouter6000:qos/ifqosxrouter6000:hierarchical/ifqosxrouter6000:weight" {
+    deviate not-supported;
+  }
+
+  /*hide if:interfaces/if:interface/ethxrouter6000:ethernet->qos->profile->resource*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ifqosxrouter6000:qos/ifqosxrouter6000:profile/ifqosxrouter6000:resource" {
+    deviate not-supported;
+  }
+
+  /************************************** ethernet->dot1q->pvc **************************************/
+
+  /*ethernet->dot1q->pvc->qos->hierarchical->mode->strict*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc"
+  + "/ifqosxrouter6000:qos/ifqosxrouter6000:hierarchical-mode-strict" {
+      deviate not-supported;
+  }
+
+
+
+  /************************************** dot1q pvc **************************************/
+
+  /*dot1q->pvc->qos->weight:1..253*/
+  /*change range from "1..4096" to "1..253"*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc"
+  + "/ifqosxrouter6000:qos/ifqosxrouter6000:weight" {
+    deviate replace {
+      type uint16 {
+        range "1..253";
+      }
+    }
+  }
+
+  /************************************** dot1q pvc-list **************************************/
+  /*dot1q->pvc-list->qos->weight:1..253*/
+  /*change range from "1..256" to "1..253"*/
+  deviation "/if:interfaces/if:interface/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc-list"
+  + "/ifqosxrouter6000:qos/ifqosxrouter6000:weight" {
+    deviate replace {
+      type uint16 {
+        range "1..253";
+      }
+    }
+  }
+
+  /************************************** ethernet **************************************/
+
+
+  /************************************** ethernet dot1q pvc **************************************/
+
+  /*ethernet->dot1q->pvc->qos->weight:1..253*/
+  /*change range from "1..256" to "1..253"*/
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/l2vlanxrouter6000:dot1q/l2vlanxrouter6000:pvc"
+  + "/ifqosxrouter6000:qos/ifqosxrouter6000:weight" {
+    deviate replace {
+      type uint16 {
+        range "1..253";
+      }
+    }
+  }
+
+  /************************************** link-group **************************************/
+
+}

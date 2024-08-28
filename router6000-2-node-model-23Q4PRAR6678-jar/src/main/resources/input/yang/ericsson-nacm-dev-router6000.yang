@@ -1,0 +1,36 @@
+module ericsson-nacm-dev-router6000 {
+  yang-version 1;
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-nacm-dev-router6000";
+  prefix nacmdevr6k;
+
+  import ietf-netconf-acm { prefix nacm; }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web: <http://www.ericsson.com>";
+
+  description
+    "Deviation YANG for ietf-netconf-acm.
+     Copyright Ericsson AB 2023.
+     All rights reserved";
+
+  revision "2023-09-05" {
+    description
+      "deviation for ietf-netconf-acm.yang file";
+    reference
+      "rfc6020";
+      yexte:version "1";
+      yexte:release "0";
+      yexte:correction "0";
+  }
+
+  deviation "/nacm:nacm" {
+    deviate not-supported;
+  }
+}

@@ -1,0 +1,985 @@
+module ericsson-logger-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-logger-router6000";
+
+  prefix "loggerrouter6000";
+
+  import ietf-inet-types {
+    prefix "inet";
+  }
+
+  import ericsson-types-router6000 {
+    prefix "typesrouter6000";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-context-router6000 {
+    prefix "ctxr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-logger-router6000
+     Copyright (c) 2023 Ericsson AB.
+     All rights reserved";
+
+  revision "2023-06-10" {
+    description
+      "support logger cmd-audit exclude";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "2";
+    yexte:correction "0";
+  }
+
+  revision "2022-03-08" {
+    description
+      "support logger filter";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "1";
+    yexte:correction "2";
+  }
+
+  revision "2018-11-27" {
+    description
+      "remove ipos choice description";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  revision "2018-06-25" {
+    description
+      "initial revision";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+
+typedef severity {
+    type enumeration {
+      enum emergency {
+        value 0;
+        description
+          "Log only emergency events
+           (priority 0)";
+      }
+      enum alert {
+        value 1;
+        description
+          "Log alert and more severe events
+           (priority 1)";
+      }
+      enum critical {
+        value 2;
+        description
+          "Log critical and more severe events
+           (priority 2)";
+      }
+      enum error {
+        value 3;
+        description
+          "Log error and more severe events
+           (priority 3)";
+      }
+      enum warning {
+        value 4;
+        description
+          "Log warning and more severe events
+           (priority 4)";
+      }
+      enum notice {
+        value 5;
+        description
+          "Log notice and more severe events
+           (priority 5)";
+      }
+      enum informational {
+        value 6;
+        description
+          "Log informational and more severe events
+           (priority 6)";
+      }
+      enum debug {
+        value 7;
+        description
+          "Log all events, including debug
+           (priority 7)";
+      }
+      enum none {
+        value 8;
+        description
+          "Log none events";
+      }
+    }
+}
+
+  grouping syslog-grp {
+    description
+      "logg syslog configuration mode";
+    /*
+    format ietf-syslog
+    */
+    leaf format-ietf-syslog {
+      type empty;
+      description
+        "Configure ietf-syslog format";
+    }
+    /*
+    syslog-facility
+    */
+    container syslog-facility {
+      description
+        "Specify the syslog logging facility (local[0-7])";
+      container non-security {
+        description
+          "Non-security log";
+        choice non-security {
+          case local7 {
+            leaf local7 {
+              type empty;
+              description
+                "Use syslog facility local7 (the default for
+                 non-security log)";
+            }
+          }
+          case local6 {
+            leaf local6 {
+              type empty;
+              description
+                "Use syslog facility local6 (the default for
+                 security log)";
+            }
+          }
+          case local5 {
+            leaf local5 {
+              type empty;
+              description
+                "Use syslog facility local5";
+            }
+          }
+          case local4 {
+            leaf local4 {
+              type empty;
+              description
+                "Use syslog facility local4";
+            }
+          }
+          case local3 {
+            leaf local3 {
+              type empty;
+              description
+                "Use syslog facility local3";
+            }
+          }
+          case local2 {
+            leaf local2 {
+              type empty;
+              description
+                "Use syslog facility local2";
+            }
+          }
+          case local1 {
+            leaf local1 {
+              type empty;
+              description
+                "Use syslog facility local1";
+            }
+          }
+          case local0 {
+            leaf local0 {
+              type empty;
+              description
+                "Use syslog facility local0";
+            }
+          }
+        }
+      }
+      container security {
+        description
+          "Security log";
+        choice security {
+          case local7 {
+            leaf local7 {
+              type empty;
+              description
+                "Use syslog facility local7 (the default for
+                 non-security log)";
+            }
+          }
+          case local6 {
+            leaf local6 {
+              type empty;
+              description
+                "Use syslog facility local6 (the default for
+                 security log)";
+            }
+          }
+          case local5 {
+            leaf local5 {
+              type empty;
+              description
+                "Use syslog facility local5";
+            }
+          }
+          case local4 {
+            leaf local4 {
+              type empty;
+              description
+                "Use syslog facility local4";
+            }
+          }
+          case local3 {
+            leaf local3 {
+              type empty;
+              description
+                "Use syslog facility local3";
+            }
+          }
+          case local2 {
+            leaf local2 {
+              type empty;
+              description
+                "Use syslog facility local2";
+            }
+          }
+          case local1 {
+            leaf local1 {
+              type empty;
+              description
+                "Use syslog facility local1";
+            }
+          }
+          case local0 {
+            leaf local0 {
+              type empty;
+              description
+                "Use syslog facility local0";
+            }
+          }
+        }
+      }
+    }
+    /*
+    trust-category (name-obj)
+    */
+    leaf trust-category {
+      type string;
+      description
+        "Configure syslog trust-category";
+    }
+    /*
+    node-credential (name-obj)
+    */
+    leaf node-credential {
+      type string;
+      description
+        "Configure syslog node-credential";
+    }
+  }
+
+  grouping logg-facility-grp {
+    description
+      "logging facility configuration mode";
+    /*
+    disable (facility-object)
+    */
+    leaf-list disable {
+      type string {
+        length "0..64";
+      }
+      max-elements 256;
+      description
+        "The source of the log";
+    }
+  }
+
+  grouping logg-filter-grp {
+    description
+      "logging filter configuration mode";
+    /*
+    source
+    */
+    container source {
+      description
+        "The source of the log";
+      container non-security {
+        description
+          "Non-security log";
+        leaf severity {
+          type severity;
+          description
+            "Servirty filter";
+        }
+        container sub-facility {
+          description
+            "Facility filter";
+          uses filter-source-grp;
+        }
+      }
+      container security {
+        description
+          "Security log";
+        container severity {
+          description
+            "Servirty filter";
+          choice severity {
+            case emergency {
+              leaf emergency {
+                type empty;
+                description
+                  "Log only emergency events
+                   (priority 0)";
+              }
+            }
+            case alert {
+              leaf alert {
+                type empty;
+                description
+                  "Log alert and more severe events
+                   (priority 1)";
+              }
+            }
+            case critical {
+              leaf critical {
+                type empty;
+                description
+                  "Log critical and more severe events
+                   (priority 2)";
+              }
+            }
+            case error {
+              leaf error {
+                type empty;
+                description
+                  "Log error and more severe events
+                   (priority 3)";
+              }
+            }
+            case warning {
+              leaf warning {
+                type empty;
+                description
+                  "Log warning and more severe events
+                   (priority 4)";
+              }
+            }
+            case notice {
+              leaf notice {
+                type empty;
+                description
+                  "Log notice and more severe events
+                   (priority 5)";
+              }
+            }
+            case informational {
+              leaf informational {
+                type empty;
+                description
+                  "Log informational and more severe events
+                   (priority 6)";
+              }
+            }
+            case debug {
+              leaf debug {
+                type empty;
+                description
+                  "Log all events, including debug
+                   (priority 7)";
+              }
+            }
+            case none {
+              leaf none {
+                type empty;
+                description
+                  "Log none events";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  grouping filter-source-grp {
+    description
+      "logging filter source configuration mode";
+    /*
+    facility < fac-name (name) > < severity { emergency | alert
+     | critical | error | warning | notice | informational |
+     debug | none } >
+    */
+    list facility {
+      key "fac-name";
+      max-elements 32;
+      description
+        "Facility filter";
+      leaf fac-name {
+        type string {
+          length "0..64";
+        }
+        description
+          "Facility filter";
+      }
+      container severity {
+        description
+          "Servirty filter";
+        choice severity {
+          case emergency {
+            leaf emergency {
+              type empty;
+              description
+                "Log only emergency events
+                 (priority 0)";
+            }
+          }
+          case alert {
+            leaf alert {
+              type empty;
+              description
+                "Log alert and more severe events
+                 (priority 1)";
+            }
+          }
+          case critical {
+            leaf critical {
+              type empty;
+              description
+                "Log critical and more severe events
+                 (priority 2)";
+            }
+          }
+          case error {
+            leaf error {
+              type empty;
+              description
+                "Log error and more severe events
+                 (priority 3)";
+            }
+          }
+          case warning {
+            leaf warning {
+              type empty;
+              description
+                "Log warning and more severe events
+                 (priority 4)";
+            }
+          }
+          case notice {
+            leaf notice {
+              type empty;
+              description
+                "Log notice and more severe events
+                 (priority 5)";
+            }
+          }
+          case informational {
+            leaf informational {
+              type empty;
+              description
+                "Log informational and more severe events
+                 (priority 6)";
+            }
+          }
+          case debug {
+            leaf debug {
+              type empty;
+              description
+                "Log all events, including debug
+                 (priority 7)";
+            }
+          }
+          case none {
+            leaf none {
+              type empty;
+              description
+                "Log none events";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  augment "/ctxsr6k:contexts" {
+    description
+      "ericsson-logger-router6000";
+    /*
+    logging { debug { active | standby | default } | timestamp {
+     local-utc | millisecond | epoch } | active | < standby <
+     standby-enable (enable-value) > [ short ] > | cct-valid |
+     cmd-audit | (cmd-audit-enable) [ exclude-sync-cmd ] |
+     archive persistent (file-number) < size (file-size) > |
+     facility }
+    */
+    container logging {
+      description
+        "Logging configuration command";
+      container debug {
+        description
+          "Configure to log debug events";
+        leaf active {
+          type empty;
+          description
+            "Configure to send debug events from active to
+             standby controller";
+        }
+        leaf standby {
+          type empty;
+          description
+            "Configure to send debug events from standby to
+             active controller";
+        }
+        leaf default {
+          type empty;
+          description
+            "Configure to enable logging debug messages to the
+             log buffer";
+        }
+      }
+      container timestamp {
+        description
+          "Configure the timestamp information of log";
+        leaf local-utc {
+          type empty;
+          description
+            "Configure to log with timestamp in ISO-8601 UTC
+             format";
+        }
+        leaf millisecond {
+          type empty;
+          description
+            "Configure to log with timestamp in millisecond
+             resolution";
+        }
+        leaf epoch {
+          type empty;
+          description
+            "Configure to log with epoch timestamp";
+        }
+      }
+      leaf active {
+        type boolean;
+        default "true";
+        description
+          "Enable/Disable active";
+      }
+      container standby {
+        presence "";
+        description
+          "Configure to log standby event to active controller";
+        leaf standby-enable {
+          type boolean;
+          default "true";
+          description
+            "enable configure to log standby event to active
+             controller";
+        }
+        leaf short {
+          when "../standby-enable='true'" {
+            description
+              "short only exist when standby-enable is true.";
+          }
+          type boolean;
+          default "true";
+          description
+            "Configure to log standby event in short form";
+        }
+      }
+      leaf cct-valid {
+        type empty;
+        description
+          "Configure to log only event with valid cct";
+      }
+      leaf cmd-audit {
+        type empty;
+        status obsolete;
+        description
+          "Configure to log commands";
+      }
+      container cmd-audit-enable {
+        description
+          "container cmd-audit-enable.";
+        leaf cmd-audit-enable {
+          type empty;
+          description
+            "Configure to log commands";
+        }
+        leaf exclude-sync-cmd {
+          type empty;
+          description
+            "Exclude commands from cmd-audit log";
+        }
+      }
+      container archive-persistent {
+        presence "";
+        description
+          "Configure archive persistent log file";
+        leaf file-number {
+          type uint8 {
+            range "50..60";
+          }
+          mandatory true;
+          description
+            "
+                            Configure the rotation number of
+             archived log files
+                          ";
+        }
+        leaf size {
+          type uint16 {
+            range "20480..25600";
+          }
+          mandatory true;
+          description
+            "Configure the maximum size of archived log file";
+        }
+      }
+      container facility {
+        presence "";
+        description
+          "Configure to global log facility filter";
+        uses logg-facility-grp;
+      }
+    }
+    /*
+    isp-log timestamp-format local-utc
+    */
+    leaf isp-log-timestamp-format-local-utc {
+      type empty;
+      description
+        "Save timestamp in local time with  UTC offset";
+    }
+  }
+
+  augment "/ctxsr6k:contexts/ctxr6k:context" {
+    description
+      "ericsson-logger-router6000";
+    /*
+    logging { console | < file (log-fname) [ text ] > | < syslog
+     { (server-ipv6) | (syslog-server) } [ facility { local7 |
+     local6 | local5 | local4 | local3 | local2 | local1 | local0
+     } ] > | < syslog-new { (server-ipv6) | (syslog-server) } [
+     protocol { udp | tcp | tls } ] [ port (port-num) ] > | <
+     filter { console | monitor | file | syslog } < level {
+     emergency | alert | critical | error | warning | notice |
+     informational | debug } > > }
+    */
+    container logging {
+      description
+        "Logging configuration command";
+      leaf console {
+        type boolean;
+        default "false";
+        description
+          "Enable/Disable console";
+      }
+      list file {
+        key "log-fname";
+        description
+          "Enable logging to local files";
+        leaf log-fname {
+          type string {
+            length "0..256";
+          }
+          description
+            "Local file name prefix;";
+        }
+        leaf text {
+          type empty;
+          description
+            "Save the log in clear text";
+        }
+      }
+      list syslog {
+        key "server-addr";
+        status obsolete;
+        description
+          "Enable logging to a syslog server reachable within
+           this context.";
+        leaf server-addr {
+          type union {
+            type inet:ipv6-address;
+            type inet:ipv4-address;
+          }
+          description
+            "the ipv4 or ipv6 address of the remote syslog
+             server";
+        }
+        container facility {
+          status obsolete;
+          description
+            "Specify the syslog logging facility (local[0-7])";
+          choice facility {
+            case local7 {
+              leaf local7 {
+                type empty;
+                status obsolete;
+                description
+                  "Use syslog facility local7 (the default)";
+              }
+            }
+            case local6 {
+              leaf local6 {
+                type empty;
+                status obsolete;
+                description
+                  "Use syslog facility local6";
+              }
+            }
+            case local5 {
+              leaf local5 {
+                type empty;
+                status obsolete;
+                description
+                  "Use syslog facility local5";
+              }
+            }
+            case local4 {
+              leaf local4 {
+                type empty;
+                status obsolete;
+                description
+                  "Use syslog facility local4";
+              }
+            }
+            case local3 {
+              leaf local3 {
+                type empty;
+                status obsolete;
+                description
+                  "Use syslog facility local3";
+              }
+            }
+            case local2 {
+              leaf local2 {
+                type empty;
+                status obsolete;
+                description
+                  "Use syslog facility local2";
+              }
+            }
+            case local1 {
+              leaf local1 {
+                type empty;
+                status obsolete;
+                description
+                  "Use syslog facility local1";
+              }
+            }
+            case local0 {
+              leaf local0 {
+                type empty;
+                status obsolete;
+                description
+                  "Use syslog facility local0";
+              }
+            }
+          }
+        }
+      }
+      list syslog-new {
+        key "server-addr protocol port";
+        description
+          "Enable logging to a syslog server reachable within
+           this context.";
+        leaf server-addr {
+          type union {
+            type inet:ipv6-address;
+            type inet:ipv4-address;
+          }
+          description
+            "the ipv4 or ipv6 address of the remote syslog
+             server";
+        }
+        leaf protocol {
+          type enumeration {
+            enum udp {
+              value 0;
+              description
+                "Use syslog protocol udp (the default)";
+            }
+            enum tcp {
+              value 1;
+              description
+                "Use syslog protocol tcp";
+            }
+            enum tls {
+              value 2;
+              description
+                "Use syslog protocol tls";
+            }
+          }
+          description
+            "Specify the syslog logging protocol (udp|tcp|tls)";
+        }
+        leaf port {
+          type uint16 {
+            range "1..65535";
+          }
+          description
+            "Specify the syslog logging port number";
+        }
+        uses syslog-grp;
+      }
+      list filter {
+        key "filter-choice";
+        status obsolete;
+        description
+          "Configure logging level";
+        leaf filter-choice {
+          type enumeration {
+            enum console {
+              value 0;
+              status obsolete;
+              description
+                "Configure logging display filter for the
+                 console";
+            }
+            enum monitor {
+              value 1;
+              status obsolete;
+              description
+                "Configure logging display filter for monitoring
+                 terminal";
+            }
+            enum file {
+              value 2;
+              status obsolete;
+              description
+                "Configure logging display filter for file";
+            }
+            enum syslog {
+              value 3;
+              status obsolete;
+              description
+                "Configure logging display filter for syslog
+                 server";
+            }
+          }
+          description
+            "leaf filter-choice.";
+        }
+        leaf level {
+          type enumeration {
+            enum emergency {
+              value 0;
+              status obsolete;
+              description
+                "Log only emergency events
+                 (priority 0)";
+            }
+            enum alert {
+              value 1;
+              status obsolete;
+              description
+                "Log alert and more severe events
+                 (priority 1)";
+            }
+            enum critical {
+              value 2;
+              status obsolete;
+              description
+                "Log critical and more severe events
+                 (priority 2)";
+            }
+            enum error {
+              value 3;
+              status obsolete;
+              description
+                "Log error and more severe events
+                 (priority 3)";
+            }
+            enum warning {
+              value 4;
+              status obsolete;
+              description
+                "Log warning and more severe events
+                 (priority 4)";
+            }
+            enum notice {
+              value 5;
+              status obsolete;
+              description
+                "Log notice and more severe events
+                 (priority 5)";
+            }
+            enum informational {
+              value 6;
+              status obsolete;
+              description
+                "Log informational and more severe events
+                 (priority 6)";
+            }
+            enum debug {
+              value 7;
+              status obsolete;
+              description
+                "Log all events, including debug
+                 (priority 7)";
+            }
+          }
+          mandatory true;
+          status obsolete;
+          description
+            "Configure logging filter level";
+        }
+      }
+      container filter-new {
+        description
+          "Logging configuration command";
+        container console {
+          description
+            "Configure logging display filter for the console";
+          uses logg-filter-grp;
+        }
+        container monitor {
+          description
+            "Configure logging display filter for monitoring
+             terminal";
+          uses logg-filter-grp;
+        }
+        list file {
+          key "filename";
+          description
+            "Configure logging display filter for file";
+          leaf filename {
+            type string {
+              length "0..256";
+            }
+            description
+              "Configure logging display filter for file";
+          }
+          uses logg-filter-grp;
+        }
+        container syslog {
+          description
+            "Configure logging display filter for syslog server";
+          uses logg-filter-grp;
+        }
+      }
+    }
+  }
+
+}

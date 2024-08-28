@@ -1,0 +1,95 @@
+module ericsson-diag-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-diag-router6000";
+
+  prefix "diagrouter6000";
+
+  import ietf-yang-types {
+    prefix "yang";
+  }
+
+  import ietf-inet-types {
+    prefix "inet";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-diag-router6000
+     Copyright (c) 2023 Ericsson AB.
+     All rights reserved";
+
+  revision "2023-02-24" {
+    description
+      "adjust diag struct";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+
+  revision "2018-08-08" {
+    description
+      "initial revision";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  augment "/ctxsr6k:contexts" {
+    description
+      "ericsson-diag";
+    /*
+    diag [ pod ] [ level (level-num) ] < pod-conf { level
+     (level-num) } >
+    */
+    container diag {
+      presence "";
+      description
+        "Set Diagnostics mode";
+      leaf pod {
+        type empty;
+        status obsolete;
+        description
+          "Set global Power-On Diagnostic (POD) mode";
+      }
+      leaf level {
+        type uint8 {
+          range "1..2";
+        }
+        status obsolete;
+        description
+          "Set POD level";
+      }
+      container pod-conf {
+        description
+          "Set global Power-On Diagnostic (POD) mode";
+        leaf level {
+          type uint8 {
+            range "1..2";
+          }
+          mandatory true;
+          description
+            "Set POD level";
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,137 @@
+module ericsson-license-monitor-dev-router6676 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-license-monitor-dev-router6676";
+
+  prefix "licensemonitordevrouter6676";
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-license-monitor-router6000 {
+    prefix "licensermonitor6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-license-monitor-dev-router6676
+     Copyright (c) 2020 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-11-07" {
+    description
+      "change the range of unlocked token of license
+       FAT1023458_1       0..36
+       FAT1024053_25      0..20
+       FAT1023483_100     0..4
+       FAT1024215_1       0";
+    reference
+      "rfc6020";
+      yexte:version "1";
+      yexte:release "1";
+      yexte:correction "1";
+  }
+
+  revision "2020-11-05" {
+    description
+      "change the range of unlocked token of license key FAT1024215_1 from 0 to 0..3";
+    reference
+      "rfc6020";
+      yexte:version "1";
+      yexte:release "1";
+      yexte:correction "0";
+  }
+
+  revision "2020-08-19" {
+    description
+      "deviation for ericsson-license-monitor yang file";
+    reference
+      "rfc6020";
+      yexte:version "1";
+      yexte:release "0";
+      yexte:correction "1";
+  }
+
+  revision "2020-04-07" {
+    description
+      "deviation for ericsson-license-monitor yang file";
+    reference
+      "rfc6020";
+      yexte:version "1";
+      yexte:release "0";
+      yexte:correction "0";
+  }
+
+  deviation "/ctxsr6k:contexts/licensermonitor6k:license-monitoring/licensermonitor6k:license-monitoring/licensermonitor6k:manual-unlock/"
+            + "licensermonitor6k:manual-unlock/licensermonitor6k:modify/licensermonitor6k:FAT1023250_1"  {
+         deviate replace {
+         type uint64 {
+            range "0";
+          }
+         }
+       }
+
+  deviation "/ctxsr6k:contexts/licensermonitor6k:license-monitoring/licensermonitor6k:license-monitoring/licensermonitor6k:manual-unlock/"
+            + "licensermonitor6k:manual-unlock/licensermonitor6k:modify/licensermonitor6k:FAT1023458_1" {
+         deviate replace {
+         type uint64 {
+            range "0..36";
+          }
+         }
+       }
+
+  deviation "/ctxsr6k:contexts/licensermonitor6k:license-monitoring/licensermonitor6k:license-monitoring/licensermonitor6k:manual-unlock/"
+            + "licensermonitor6k:manual-unlock/licensermonitor6k:modify/licensermonitor6k:FAT1024053_25" {
+         deviate replace {
+         type uint64 {
+            range "0..20";
+          }
+         }
+       }
+
+  deviation "/ctxsr6k:contexts/licensermonitor6k:license-monitoring/licensermonitor6k:license-monitoring/licensermonitor6k:manual-unlock/"
+            + "licensermonitor6k:manual-unlock/licensermonitor6k:modify/licensermonitor6k:FAT1023483_100" {
+         deviate replace {
+         type uint64 {
+            range "0..4";
+          }
+         }
+       }
+
+  deviation "/ctxsr6k:contexts/licensermonitor6k:license-monitoring/licensermonitor6k:license-monitoring/licensermonitor6k:manual-unlock/"
+            + "licensermonitor6k:manual-unlock/licensermonitor6k:modify/licensermonitor6k:FAT1023953_1" {
+         deviate replace {
+         type uint64 {
+            range "0";
+          }
+         }
+       }
+
+  deviation "/ctxsr6k:contexts/licensermonitor6k:license-monitoring/licensermonitor6k:license-monitoring/licensermonitor6k:manual-unlock/"
+            + "licensermonitor6k:manual-unlock/licensermonitor6k:modify/licensermonitor6k:FAT1023955_1" {
+         deviate replace {
+         type uint64 {
+            range "0";
+          }
+         }
+       }
+
+  deviation "/ctxsr6k:contexts/licensermonitor6k:license-monitoring/licensermonitor6k:license-monitoring/licensermonitor6k:manual-unlock/"
+            + "licensermonitor6k:manual-unlock/licensermonitor6k:modify/licensermonitor6k:FAT1024215_1" {
+         deviate replace {
+         type uint64 {
+            range "0";
+          }
+         }
+       }
+}

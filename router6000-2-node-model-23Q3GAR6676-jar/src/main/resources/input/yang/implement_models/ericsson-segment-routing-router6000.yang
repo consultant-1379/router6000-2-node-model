@@ -1,0 +1,636 @@
+module ericsson-segment-routing-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-segment-routing-router6000";
+
+  prefix "sgrtrouter6000";
+
+  import ietf-inet-types {
+    prefix "inet";
+  }
+
+  import ietf-interfaces {
+    prefix "if";
+  }
+
+  import ericsson-types-router6000 {
+    prefix "typesrouter6000";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-qos-router6000 {
+    prefix "qosrouter6000";
+  }
+
+  import ericsson-context-router6000 {
+    prefix "ctxr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-segment-routing-router6000
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-11-27" {
+    description
+      "Fix node length backward compatibility";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "6";
+  }
+
+  revision "2022-11-08" {
+    description
+      "Modify lower range limit for prefix node len";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "5";
+  }
+
+  revision "2022-11-01" {
+    description
+      "Adding prefix node length for srv6 locators";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "4";
+  }
+
+  revision "2022-09-15" {
+    description
+      "Locator real name removed";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "3";
+  }
+
+  revision "2022-08-03" {
+    description
+      "SRv6 propogate from ip issue fix";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "2";
+  }
+
+  revision "2022-06-01" {
+    description
+      "SRv6 propogate commands issue fix";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+  revision "2022-04-04" {
+    description
+      "Added support for SRv6 Propogare commands";
+    reference
+      "rfc6020";
+    yexte:version "3";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  revision "2021-12-14" {
+    description
+      "Added support for SRv6 locator";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "1";
+    yexte:correction "3";
+  }
+
+  revision "2021-11-22" {
+    description
+      "changed the default value of Msd value";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "1";
+    yexte:correction "2";
+  }
+
+  revision "2021-10-18" {
+    description
+      "Added more labels for label stack";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "1";
+    yexte:correction "1";
+  }
+
+  revision "2021-05-04" {
+    description
+      "Added model for distance";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+
+  revision "2018-06-05" {
+    description
+      "Change model namespace";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  revision "2018-05-02" {
+    description
+      "Added new container binding-sid absolute";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+
+  revision "2018-01-13" {
+    description
+      "HW56377 Modify the Maximum node depth value";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+  revision "2017-06-02" {
+    description
+      "initial revision";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  grouping segment-routing-grp {
+    description
+      "Segment-Routing configuration mode";
+    /*
+    address-family ipv4
+    */
+    container address-family-ipv4 {
+      presence "";
+      description
+        "IPv4 address family";
+      uses sr-af4-grp;
+    }
+    /*
+    segment-routing srv6
+    */
+    container segment-routing-srv6 {
+      presence "";
+      description
+        "SRv6 configuration";
+      uses sr-srv6-grp;
+    }
+    /*
+    msd node (node-value)
+    */
+    container msd {
+      description
+        "maximum segment depth";
+      leaf node {
+        type uint8 {
+          range "4";
+        }
+        description
+          "Configure Node`s maximum segment depth";
+      }
+    }
+  }
+
+  grouping sr-af4-grp {
+    description
+      "SR IPv4 address family configuration mode";
+    /*
+    prefix-sid-map-group (map-group)
+    */
+    list prefix-sid-map-group {
+      key "prefix-sid-map-group";
+      description
+        "Prefix sid map group command mode";
+      leaf prefix-sid-map-group {
+        type string;
+        description
+          "Group name";
+      }
+      uses sr-prefix-group-grp;
+    }
+    /*
+    tunnel (tunnel-name)
+    */
+    list tunnel {
+      key "tunnel";
+      description
+        "Configure segment routing tunnel-name";
+      leaf tunnel {
+        type string;
+        description
+          "Tunnel name";
+      }
+      uses tunnel-grp;
+    }
+    /*
+    distance (dist-value)
+    */
+    leaf distance {
+      type uint8 {
+        range "1..255";
+      }
+      default "9";
+      description
+        "Configure admin distance for SR static tunnels";
+    }
+  }
+
+  grouping sr-prefix-group-grp {
+    description
+      "SR af4 prefix group configuration mode";
+    /*
+    mapgroup-ip (mapgroup-ip) (mapgroup-sid) <range (range-
+     value)>
+    */
+    list mapgroup-ip {
+      key "mapgroup-ip";
+      description
+        "mapgroup-ip";
+      leaf mapgroup-ip {
+        type inet:ipv4-prefix;
+        description
+          "IP Address";
+      }
+      leaf mapgroup-sid {
+        type uint32 {
+          range "16..1048575";
+        }
+        mandatory true;
+        description
+          "SID value";
+      }
+      leaf range {
+        type uint8 {
+          range "1..128";
+        }
+        mandatory true;
+        description
+          "Range of SID";
+      }
+    }
+  }
+
+  grouping sr-srv6-grp {
+    description
+      "SRv6 configuration mode";
+    /*
+    locator (loc1)
+    */
+    list locator {
+      key "locator";
+      description
+        "Configure segment routing srv6 locator";
+      leaf locator {
+        type string;
+        description
+          "Locator name";
+      }
+      uses locator-grp;
+    }
+    /*
+    propagate ttl { ip-to-srv6 | srv6-to-ip }
+    */
+    container propagate-ttl {
+      description
+        "Configure TTL bits propagation";
+      leaf ip-to-srv6 {
+        type empty;
+        description
+          "Propagate IP TTL bits to SRv6 TTL";
+      }
+      leaf srv6-to-ip {
+        type empty;
+        description
+          "Propagate SRv6 TTL bits to IP TTL";
+      }
+    }
+    /*
+    propagate qos from ip [ class-map (cm-in) ]
+    */
+    container propagate-qos-from-ip {
+      presence "";
+      description
+        "Configure IP qos mapping";
+      leaf propagate-qos-from-ip-enable {
+        type boolean;
+        default "true";
+        description
+          "Enable/Disable propagate-qos-from-ip-enable";
+      }
+      leaf class-map {
+        when "../propagate-qos-from-ip-enable='true'" {
+          description
+            "";
+        }
+        type leafref {
+          path "/qosrouter6000:qos/qosrouter6000:class-map"
+          + "/qosrouter6000:map-name";
+        }
+        must "/qosrouter6000:qos"
+        + "/qosrouter6000:class-map[qosrouter6000:map-name = current()]"
+        + "/qosrouter6000:ip/qosrouter6000:in" {
+          error-message "class-map must be ip type for in "
+          + "direction";
+          description
+            "leafref to class-map with ip in type";
+        }
+        description
+          "Configure packet classification mapping";
+      }
+    }
+    /*
+    propagate qos to ip [ class-map (cm-out) ]
+    */
+    container propagate-qos-to-ip {
+      presence "";
+      description
+        "Configure IP qos mapping";
+      leaf class-map {
+        type leafref {
+          path "/qosrouter6000:qos/qosrouter6000:class-map"
+          + "/qosrouter6000:map-name";
+        }
+        must "/qosrouter6000:qos"
+        + "/qosrouter6000:class-map[qosrouter6000:map-name = current()]"
+        + "/qosrouter6000:ip/qosrouter6000:out" {
+          error-message "class-map must be ip type for out "
+          + "direction";
+          description
+            "leafref to class-map with ip out type";
+        }
+        description
+          "Configure packet classification mapping";
+      }
+    }
+  }
+
+  grouping locator-grp {
+    description
+      "SRv6 locator configuration mode";
+    /*
+    pfx (pfx-id) [ node-length (val) ]
+    */
+    list pfx {
+      key "pfx-id";
+      description
+        "Locator prefix";
+      leaf pfx-id {
+        type typesrouter6000:ipv6-address-mask;
+        description
+          "Locator prefix";
+      }
+      leaf node-length {
+        type uint8 {
+          range "1..96";
+        }
+        description
+          "Locator prefix's node length";
+      }
+    }
+    /*
+    prefix (prefix-id)
+    */
+    leaf prefix {
+      type typesrouter6000:ipv6-address-mask;
+      status obsolete;
+      description
+        "Locator prefix";
+    }
+  }
+
+  grouping tunnel-grp {
+    description
+      "Segment-Routing tunnel configuration mode";
+    /*
+    egress (egress-ip)
+    */
+    leaf egress {
+      type inet:ipv4-address;
+      description
+        "Tunnel egress node";
+    }
+    /*
+    label-stack (first-sid) [ (second-sid) [ (third-sid) [
+     (fourth-sid) ] ] ]
+    */
+    container label-stack {
+      presence "";
+      status obsolete;
+      description
+        "Configure out-going label stack";
+      leaf first-sid {
+        type uint32 {
+          range "16..1048575";
+        }
+        mandatory true;
+        description
+          "First SID";
+      }
+      container second-sid-opt {
+        presence "";
+        description
+          "Second SID option";
+        leaf second-sid {
+          type uint32 {
+            range "16..1048575";
+          }
+          mandatory true;
+          description
+            "Second SID";
+        }
+        container third-sid-opt {
+          presence "";
+          description
+            "Third SID option";
+          leaf third-sid {
+            type uint32 {
+              range "16..1048575";
+            }
+            mandatory true;
+            description
+              "Third SID";
+          }
+          leaf fourth-sid {
+            type uint32 {
+              range "16..1048575";
+            }
+            description
+              "Fourth SID";
+          }
+        }
+      }
+    }
+    /*
+    binding-sid absolute (identifier)
+    */
+    container binding-sid {
+      description
+        "Configure binding segment identifier";
+      leaf absolute {
+        type uint32 {
+          range "1015808..1017855";
+        }
+        description
+          "Identifier from local range";
+      }
+    }
+    /*
+    label-stack-cfg (first-sid) [ (second-sid) [ (third-sid) [
+     (fourth-sid) [ (fifth-sid) [ (sixth-sid) [ (seventh-sid) [
+     (eighth-sid) ] ] ] ] ] ] ]
+    */
+    container label-stack-cfg {
+      presence "";
+      description
+        "Configure out-going label stack";
+      leaf first-sid {
+        type uint32 {
+          range "16..1048575";
+        }
+        mandatory true;
+        description
+          "First SID";
+      }
+      container second-sid-opt {
+        presence "";
+        description
+          "Second SID option";
+        leaf second-sid {
+          type uint32 {
+            range "16..1048575";
+          }
+          mandatory true;
+          description
+            "Second SID";
+        }
+        container third-sid-opt {
+          presence "";
+          description
+            "Third SID option";
+          leaf third-sid {
+            type uint32 {
+              range "16..1048575";
+            }
+            mandatory true;
+            description
+              "Third SID";
+          }
+          container fourth-sid-opt {
+            description
+              "Fourth SID option";
+            leaf fourth-sid {
+              type uint32 {
+                range "16..1048575";
+              }
+              mandatory true;
+              description
+                "Fourth SID";
+            }
+            container fifth-sid-opt {
+              description
+                "Fifth SID option";
+              leaf fifth-sid {
+                type uint32 {
+                  range "16..1048575";
+                }
+                mandatory true;
+                description
+                  "Fifth SID";
+              }
+              container sixth-sid-opt {
+                description
+                  "Sixth SID option";
+                leaf sixth-sid {
+                  type uint32 {
+                    range "16..1048575";
+                  }
+                  mandatory true;
+                  description
+                    "Sixth SID";
+                }
+                container seventh-sid-opt {
+                  description
+                    "Seventh SID option";
+                  leaf seventh-sid {
+                    type uint32 {
+                      range "16..1048575";
+                    }
+                    mandatory true;
+                    description
+                      "Seventh SID";
+                  }
+                  leaf eighth-sid {
+                    type uint32 {
+                      range "16..1048575";
+                    }
+                    description
+                      "Eighth SID";
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  augment "/ctxsr6k:contexts/ctxr6k:context/ctxr6k:router" {
+    description
+      "ericsson-segment-routing";
+    /*
+    segment-routing
+    */
+    container segment-routing {
+      when "../../ctxr6k:context-name='local'" {
+        description
+          "";
+      }
+      presence "";
+      description
+        "segment-routing";
+      uses segment-routing-grp;
+    }
+  }
+
+}

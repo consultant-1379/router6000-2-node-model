@@ -1,0 +1,68 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-iprouting-dev-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-iprouting-dev-router6000";
+
+  prefix "iproutingvrouter6000";
+
+  import ericsson-iprouting-router6000 {
+    prefix "iproutingrouter6000";
+  }
+
+  import ericsson-context-router6000 {
+    prefix "ctxr6k";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-iprouting-dev-router6000
+     Copyright (c) 2016 Ericsson AB.
+     All rights reserved";
+
+  revision "2021-05-19" {
+    description
+      "Removed the deviation for the rt-num as it is supported by CLI";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+
+  revision "2018-06-05" {
+    description
+      "Change the module namespace";
+    reference
+      "rfc6020";
+    yexte:version "2";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  revision "2017-07-27" {
+    description
+      "deviation for ericsson-iprouting-router6000.yang.";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+}

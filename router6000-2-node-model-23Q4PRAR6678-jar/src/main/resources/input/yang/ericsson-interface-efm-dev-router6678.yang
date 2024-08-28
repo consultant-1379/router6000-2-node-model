@@ -1,0 +1,48 @@
+module ericsson-interface-efm-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-interface-efm-dev-router6678";
+
+  prefix "ifefmdevrouter6678";
+
+  import ericsson-interface-efm-router6000 {
+    prefix "ifefmrouter6000";
+  }
+
+  import ietf-interfaces {
+    prefix "if";
+  }
+
+  import ericsson-ethernet-ext-router6000 {
+    prefix "ethxrouter6000";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-interface-efm-dev-router6678
+     Copyright (c) 2023 Ericsson AB.
+     All rights reserved";
+
+  revision "2023-01-10" {
+    description
+      "link-oam not supported";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  deviation "/if:interfaces/if:interface/ethxrouter6000:ethernet/ifefmrouter6000:link-oam" {
+     deviate not-supported;
+  }
+}

@@ -1,0 +1,337 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-qos-dev-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-qos-dev-router6000";
+
+  prefix "qosvirouter6000";
+
+  import ericsson-qos-router6000 {
+    prefix "qosrouter6000";
+  }
+  import ericsson-qos-config-router6000 {
+    prefix "qoscfgr6k";
+  }
+  import ericsson-context-router6000 {
+    prefix "ctxr6k";
+  }
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-qos-dev-router6000
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-05-10" {
+    description
+      "add common part for r6000-qos";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  /*global->QoS->policy->policy-choice->policing->rate->mef->sharing*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:rate/qosrouter6000:mef/qosrouter6000:sharing" {
+    deviate not-supported;
+  }
+  /*global->QoS->profile->overhead->card-family*/
+  deviation "/qosrouter6000:qos/qosrouter6000:profile/qosrouter6000:profile-choice/qosrouter6000:overhead/qosrouter6000:overhead/qosrouter6000:card-family" {
+    deviate not-supported;
+  }
+  /*global->QoS->profile->overhead->rate-factor*/
+  deviation "/qosrouter6000:qos/qosrouter6000:profile/qosrouter6000:profile-choice/qosrouter6000:overhead/qosrouter6000:overhead/qosrouter6000:rate-factor" {
+    deviate not-supported;
+  }
+  /*global->QoS->profile->overhead->type*/
+  deviation "/qosrouter6000:qos/qosrouter6000:profile/qosrouter6000:profile-choice/qosrouter6000:overhead/qosrouter6000:overhead/qosrouter6000:type" {
+    deviate not-supported;
+  }
+  /*global->QoS->profile->resource*/
+  deviation "/qosrouter6000:qos/qosrouter6000:profile/qosrouter6000:profile-choice/qosrouter6000:resource" {
+    deviate not-supported;
+  }
+  /*global->QoS->congestion-avoidance-map->mdrr*/
+  deviation "/qosrouter6000:qos/qosrouter6000:congestion-avoidance-map/qosrouter6000:congestion-avoidance-map-choice/qosrouter6000:mdrr" {
+    deviate not-supported;
+  }
+  /*global->QoS->congestion-avoidance-map->card-family*/
+  deviation "/qosrouter6000:qos/qosrouter6000:congestion-avoidance-map/qosrouter6000:card-family" {
+    deviate not-supported;
+  }
+  /*global->QoS->congestion-avoidance-map->queue->queue-choice/guaranteed*/
+  deviation "/qosrouter6000:qos/qosrouter6000:congestion-avoidance-map/qosrouter6000:queue/qosrouter6000:queue-choice/qosrouter6000:guaranteed" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->pwfq->card-family*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:pwfq/qosrouter6000:pwfq/qosrouter6000:card-family" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->pwfq->rate->maximum*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:pwfq/qosrouter6000:pwfq/qosrouter6000:rate/qosrouter6000:maximum" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->pwfq->rate->minimum*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:pwfq/qosrouter6000:pwfq/qosrouter6000:rate/qosrouter6000:minimum" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->pwfq->queue-priority-group->rate->minimum*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:pwfq/qosrouter6000:pwfq/qosrouter6000:queue-priority-group/qosrouter6000:rate/qosrouter6000:minimum" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->radius-guided*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:radius-guided" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->card-family*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:card-family" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->rate->time-burst*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:rate/qosrouter6000:rate-choice/qosrouter6000:time-burst" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->rate->countes->hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:rate/qosrouter6000:counters/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->rate->hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:rate/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->l2-access-group->l2-access-group-opt*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:l2-access-group/qosrouter6000:l2-access-group-opt" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->rate-calculation-exclude-layer-2-overhead*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:rate-calculation-exclude-layer-2-overhead" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->mark->dscp*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:mark/qosrouter6000:mark/qosrouter6000:dscp" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->rate->conform*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:rate/qosrouter6000:conform" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->l2-access-group->acl-class->rate->conform*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:l2-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:conform" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ipv6-access-group->acl-class->rate->conform*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ipv6-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:conform" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ip-access-group->acl-class->rate->conform*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ip-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:conform" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->class-group->class->rate->conform*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:class-group/qosrouter6000:class/qosrouter6000:rate/qosrouter6000:conform" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->class-group->class->rate->counters/hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:class-group/qosrouter6000:class/qosrouter6000:rate/qosrouter6000:counters/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->class-group->class->rate->hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:class-group/qosrouter6000:class/qosrouter6000:rate/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->class-group->class->mark->dscp*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:class-group/qosrouter6000:class/qosrouter6000:mark/qosrouter6000:mark/qosrouter6000:dscp" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->class-group->class->parent-class*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:class-group/qosrouter6000:class/qosrouter6000:parent-class" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ipv6-access-group->acl-class->rate->counters/hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ipv6-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:counters/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ipv6-access-group->acl-class->rate->hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ipv6-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ipv6-access-group->acl-class->mark->dscp*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ipv6-access-group/qosrouter6000:acl-class/qosrouter6000:mark/qosrouter6000:mark/qosrouter6000:dscp" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ipv6-access-group->acl-class->parent-class*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ipv6-access-group/qosrouter6000:acl-class/qosrouter6000:parent-class" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ip-access-group->acl-class->rate->counters/hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ip-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:counters/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ip-access-group->acl-class->rate->hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ip-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ip-access-group->acl-class->mark->dscp*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ip-access-group/qosrouter6000:acl-class/qosrouter6000:mark/qosrouter6000:mark/qosrouter6000:dscp" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->ip-access-group->acl-class->parent-class*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:ip-access-group/qosrouter6000:acl-class/qosrouter6000:parent-class" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->l2-access-group->acl-class->rate->counters/hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:l2-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:counters/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->l2-access-group->acl-class->rate->hierarchical-counters*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:l2-access-group/qosrouter6000:acl-class/qosrouter6000:rate/qosrouter6000:hierarchical-counters" {
+    deviate not-supported;
+  }
+  /*global->QoS->policy->policing->l2-access-group->acl-class->parent-class*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:policing/qosrouter6000:policing/qosrouter6000:l2-access-group/qosrouter6000:acl-class/qosrouter6000:parent-class" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->port->qos->policy->metering*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:port/qoscfgr6k:port/qoscfgr6k:qos/qoscfgr6k:policy/qoscfgr6k:metering" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->port->qos->policy->policing->hierarchical*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:port/qoscfgr6k:port/qoscfgr6k:qos/qoscfgr6k:policy/qoscfgr6k:policing/qoscfgr6k:policing-opt/qoscfgr6k:hierarchical" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->port->qos->profile->resource*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:port/qoscfgr6k:port/qoscfgr6k:qos/qoscfgr6k:profile/qoscfgr6k:resource" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->port->qos->weight*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:port/qoscfgr6k:port/qoscfgr6k:qos/qoscfgr6k:weight" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->port->qos->rate->minimum*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:port/qoscfgr6k:port/qoscfgr6k:qos/qoscfgr6k:rate/qoscfgr6k:minimum" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->link-group->qos->policy->metering*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:link-group/qoscfgr6k:link-group/qoscfgr6k:qos/qoscfgr6k:policy/qoscfgr6k:metering" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->link-group->qos->policy->policing->hierarchical*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:link-group/qoscfgr6k:link-group/qoscfgr6k:qos/qoscfgr6k:policy/qoscfgr6k:policing/qoscfgr6k:policing-opt/qoscfgr6k:hierarchical" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->link-group->qos->profile->resource*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:link-group/qoscfgr6k:link-group/qoscfgr6k:qos/qoscfgr6k:profile/qoscfgr6k:resource" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->link-group->qos->weight*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:link-group/qoscfgr6k:link-group/qoscfgr6k:qos/qoscfgr6k:weight" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->link-group->qos->rate*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:link-group/qoscfgr6k:link-group/qoscfgr6k:qos/qoscfgr6k:rate" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->link-group->qos->hierarchical-mode-strict*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:link-group/qoscfgr6k:link-group/qoscfgr6k:qos/qoscfgr6k:hierarchical-mode-strict" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->parent-circuit-group->qos->policy->metering*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:parent-circuit-group/qoscfgr6k:parent-circuit-group/qoscfgr6k:qos/qoscfgr6k:policy/qoscfgr6k:metering" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->parent-circuit-group->qos->policy->policing->hierarchical*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:parent-circuit-group/qoscfgr6k:parent-circuit-group/qoscfgr6k:qos/qoscfgr6k:policy/qoscfgr6k:policing/qoscfgr6k:policing-opt/qoscfgr6k:hierarchical" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->parent-circuit-group->qos->profile->resource*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:parent-circuit-group/qoscfgr6k:parent-circuit-group/qoscfgr6k:qos/qoscfgr6k:profile/qoscfgr6k:resource" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->parent-circuit-group->qos->weight*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:parent-circuit-group/qoscfgr6k:parent-circuit-group/qoscfgr6k:qos/qoscfgr6k:weight" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->parent-circuit-group->qos->rate*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:parent-circuit-group/qoscfgr6k:parent-circuit-group/qoscfgr6k:qos/qoscfgr6k:rate" {
+    deviate not-supported;
+  }
+  /*global->contexts->circuit-group->parent-circuit-group->qos->hierarchical-mode-strict*/
+  deviation "/ctxsr6k:contexts/qoscfgr6k:circuit-group/qoscfgr6k:circuit-group-choice/qoscfgr6k:parent-circuit-group/qoscfgr6k:parent-circuit-group/qoscfgr6k:qos/qoscfgr6k:hierarchical-mode-strict" {
+    deviate not-supported;
+  }
+
+   /*deviation file merge*/
+   /*change range from "0..31" to "0..31"*/
+   deviation "/qosrouter6000:qos/qosrouter6000:class-definition/qosrouter6000:qos/qosrouter6000:internal-qos-value" {
+    deviate replace {
+      type uint8 {
+        range "0..31";
+      }
+    }
+  }
+
+  /*change range from "1..256" to "1..253"*/
+  deviation "/qosrouter6000:qos/qosrouter6000:policy/qosrouter6000:policy-choice/qosrouter6000:pwfq/qosrouter6000:pwfq/"
+  + "qosrouter6000:queue/qosrouter6000:queue-choice/qosrouter6000:priority/qosrouter6000:priority-choice/qosrouter6000:weight/qosrouter6000:weight" {
+    deviate replace {
+      type uint16 {
+        range "1..253";
+      }
+    }
+  }
+
+  /*global->Qos->congestion-avoidance-map*->queue->queue-choice->queue-choice->exponential-weight*/
+  /*change range from "1..15" to "1..31" */
+  deviation "/qosrouter6000:qos/qosrouter6000:congestion-avoidance-map/qosrouter6000:queue/qosrouter6000:queue-choice/qosrouter6000:exponential-weight" {
+    deviate replace {
+      type uint8 {
+        range "1..31";
+      }
+    }
+  }
+
+  /*global->Qos->congestion-avoidance-map*->queue->queue-choice->queue-choice->red->min-threshold*/
+  /*change range from "1..9999" to "1..10240" */
+  deviation "/qosrouter6000:qos/qosrouter6000:congestion-avoidance-map/qosrouter6000:queue/qosrouter6000:queue-choice/qosrouter6000:red/qosrouter6000:min-threshold" {
+    deviate replace {
+      type uint16 {
+        range "1..10240";
+      }
+    }
+  }
+
+  /*global->Qos->congestion-avoidance-map*->queue->queue-choice->queue-choice->red->max-threshold*/
+  /*change range from "2..10000" to "2..10240" */
+  deviation "/qosrouter6000:qos/qosrouter6000:congestion-avoidance-map/qosrouter6000:queue/qosrouter6000:queue-choice/qosrouter6000:red/qosrouter6000:max-threshold" {
+    deviate replace {
+      type uint16 {
+        range "2..10240";
+      }
+    }
+  }
+
+  /*global->Qos->congestion-avoidance-map*->queue->queue-choice->queue-choice->red->probability*/
+  /*change range from "1..1023" to "1..100" */
+  deviation "/qosrouter6000:qos/qosrouter6000:congestion-avoidance-map/qosrouter6000:queue/qosrouter6000:queue-choice/qosrouter6000:red/qosrouter6000:probability" {
+    deviate replace {
+      type uint16 {
+        range "1..100";
+      }
+    }
+  }
+}

@@ -1,0 +1,1670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Copyright (c) 2022 Ericsson AB.
+	All rights reserved
+
+	DX ECIM Tool-chain generated this file on Dec 27, 2022 10:36:07 AM using:
+	* com.ericsson.ecim.m2m 2.22.0.202007291315
+	* com.ericsson.ecim.dsl 2.22.0.202007291315
+	* com.ericsson.ecim.edm 2.22.0.202007291315
+--><!DOCTYPE models SYSTEM "mp.dtd">
+<models>
+    <dtdVersion>K</dtdVersion>
+    <momMetaData>
+        <momTitle>title</momTitle>
+        <momSubTitle>sub title</momSubTitle>
+        <momIdentity>
+            <docNum>0</docNum>
+            <docLang>English</docLang>
+            <docRev>0</docRev>
+            <docDate>date</docDate>
+        </momIdentity>
+    </momMetaData>
+    <mim author="ESHAZON" contact="CBC/Shaoxiang Zong" correction="1" date="2022-11-29" docNo="" name="Router6000Equipment" namespace="urn:com:ericsson:ecim:Router6000Equipment" namespacePrefix="router6000equipment" organization="EAB" release="9" revision="A" version="2">
+        <description>&lt;p&gt;R6000K Equipment model inherited from ECIM Equipment Fragment 2.1&lt;/p&gt;</description>
+        <domainExtension domain="ECIM">
+            <extension name="ecimMomName" value="ECIM_Equipment"/>
+            <extension name="ecimMomVersion" value="2"/>
+            <extension name="ecimMomRelease" value="1"/>
+            <extension name="ecimMomCorrection" value="0"/>
+        </domainExtension>
+        <implements correction="0" name="ECIM_Equipment" release="1" version="2"/>
+        <modelFeatures modelType="Template">
+            <modelFeature featureType="basic" name="Switching"/>
+        </modelFeatures>
+        <struct name="Position">
+            <description>Used to indicate the placement of a physical element.</description>
+            <structMember name="name">
+                <description>Defines a label for the position.</description>
+                <string/>
+            </structMember>
+            <structMember name="physicalPosition">
+                <description>Indicates the placement of a physical element.&#13;
+It can specify slot information on a hosting board, mounting site in cabinet or latitude/longitude.</description>
+                <string/>
+            </structMember>
+        </struct>
+        <enum name="AdmState">
+            <description>Card Administrative States</description>
+            <enumMember name="SHUTDOWN">
+                <description>Shutdown</description>
+                <value>1</value>
+            </enumMember>
+            <enumMember name="DEACTIVATED">
+                <description>Deactivated</description>
+                <value>2</value>
+            </enumMember>
+            <enumMember name="NO_SHUTDOWN">
+                <description>In service</description>
+                <value>0</value>
+            </enumMember>
+            <enumMember name="OSD">
+                <description>Out of service diagnostic</description>
+                <value>3</value>
+            </enumMember>
+            <enumMember name="NOT_CONFIGURED">
+                <description>Not configured</description>
+                <value>4</value>
+            </enumMember>
+        </enum>
+        <enum name="ResetType">
+            <description>Indicates the type of HW reset to be performed.&#13;
+&#13;
+Possible values:&#13;
+0 SOFT&#13;
+1 HARD&#13;
+2 FACTORYDEFAULT</description>
+            <enumMember name="SOFT">
+                <description>Restart without removing power.</description>
+                <value>0</value>
+            </enumMember>
+            <enumMember name="HARD">
+                <description>Restart where the power is cycled (turned on and off or the equivalent).</description>
+                <value>1</value>
+            </enumMember>
+            <enumMember name="FACTORY_DEFAULT">
+                <description>A HARD reset followed by resetting the hardware is reset to the factory default settings.</description>
+                <value>2</value>
+            </enumMember>
+        </enum>
+        <enum name="ActiveAlarmSignal">
+            <description>Defines the active signal type of the InputAlarmIO MO.&#13;
+&#13;
+Possible values:&#13;
+1: HIGH&#13;
+2:  LOW&#13;
+</description>
+            <enumMember name="HIGH">
+                <description>high</description>
+                <value>1</value>
+            </enumMember>
+            <enumMember name="LOW">
+                <description>Low</description>
+                <value>2</value>
+            </enumMember>
+        </enum>
+        <enum name="FanPerformanceStatus">
+            <description>The performance status of the fan</description>
+            <enumMember name="ENABLED">
+                <description>Fan is working and performance is good.</description>
+                <value>0</value>
+            </enumMember>
+            <enumMember name="DEGRADED">
+                <description>Fan performance is poor.</description>
+                <value>1</value>
+            </enumMember>
+            <enumMember name="FAILED">
+                <description>Fan is not working.</description>
+                <value>2</value>
+            </enumMember>
+            <enumMember name="POWERSAVE">
+                <description>No power to fans, power saving mode.</description>
+                <value>3</value>
+            </enumMember>
+        </enum>
+        <enum name="CardType">
+            <description>Card types</description>
+            <enumMember name="SF_SC_V1">
+                <description>Spitfire FUM controller card</description>
+                <value>270</value>
+            </enumMember>
+            <enumMember name="SF_LC_1_10GE_12_PORT_V1">
+                <description>Spitfire FUM line card</description>
+                <value>271</value>
+            </enumMember>
+            <enumMember name="SF_PWR_MODULE_DC_V1">
+                <description>Spitfire FUM power module</description>
+                <value>272</value>
+            </enumMember>
+            <enumMember name="SF_FAN_TRAY_V1">
+                <description>Spitfire FUM fantray</description>
+                <value>273</value>
+            </enumMember>
+            <enumMember name="NO_CARD">
+                <description>No card</description>
+                <value>1</value>
+            </enumMember>
+            <enumMember name="UNKNOWN_CARD">
+                <description>Unknown card type</description>
+                <value>0</value>
+            </enumMember>
+            <enumMember name="ROUTER6672_RPSW_V1_CARD">
+                <description>ROUTER6672 RPSW card</description>
+                <value>275</value>
+            </enumMember>
+            <enumMember name="ROUTER6672_1_10GE_20_8_BCM_V1_CARD">
+                <description>P1S LC card</description>
+                <value>276</value>
+            </enumMember>
+            <enumMember name="ROUTER6672_PWR_MODULE_DC_V1">
+                <description>ROUTER6672 DC power module</description>
+                <value>277</value>
+            </enumMember>
+            <enumMember name="ROUTER6672_PWR_MODULE_AC_V1">
+                <description>ROUTER6672 AC power module</description>
+                <value>278</value>
+            </enumMember>
+            <enumMember name="ROUTER6672_FAN_TRAY_V1">
+                <description>ROUTER6672 fan tray</description>
+                <value>279</value>
+            </enumMember>
+            <enumMember name="ROUTER6675_RPSW_V1_CARD">
+                <description>&lt;p&gt;R6675 processor&lt;/p&gt;</description>
+                <value>293</value>
+            </enumMember>
+            <enumMember name="ROUTER6675_1_10GE_24_100GE_4_BCM_V1_CARD">
+                <description>R6675 contains 24 10GE ports and 1 100GE port in the main board</description>
+                <value>294</value>
+            </enumMember>
+            <enumMember name="ROUTER6675_PWR_MODULE_DC_V1">
+                <description>R6675 DC Power Module</description>
+                <value>295</value>
+            </enumMember>
+            <enumMember name="ROUTER6675_PWR_MODULE_AC_V1">
+                <description>Router 6675 AC Power Module</description>
+                <value>296</value>
+            </enumMember>
+            <enumMember name="ROUTER6675_FAN_TRAY_V1">
+                <description>R6675 Fan Tray</description>
+                <value>297</value>
+            </enumMember>
+            <enumMember name="ROUTER6371_RPSW_V1_CARD">
+                <value>299</value>
+            </enumMember>
+            <enumMember name="ROUTER6371_1GE_4_10GE_2_BCM_CARD_V1">
+                <value>300</value>
+            </enumMember>
+            <enumMember name="ROUTER6371_PWR_MODULE_DC_V1">
+                <value>301</value>
+            </enumMember>
+            <enumMember name="ROUTER6371_PWR_MODULE_AC_V1">
+                <value>302</value>
+            </enumMember>
+            <enumMember name="ROUTER6471_1_RPSW_CARD_V1">
+                <value>304</value>
+            </enumMember>
+            <enumMember name="ROUTER6471_1_GE_8_10GE_2_BCM_CARD_V1">
+                <value>305</value>
+            </enumMember>
+            <enumMember name="ROUTER6471_2_RPSW_CARD_V1">
+                <value>310</value>
+            </enumMember>
+            <enumMember name="ROUTER6471_2_GE_8_10GE_2_BCM_CARD_V1">
+                <value>311</value>
+            </enumMember>
+            <enumMember name="ROUTER6471_X_PWR_MODULE_DC_V1">
+                <value>312</value>
+            </enumMember>
+            <enumMember name="ROUTER6471_X_PWR_MODULE_AC_V1">
+                <value>313</value>
+            </enumMember>
+            <enumMember name="ROUTER6471_X_FAN_TRAY_V1">
+                <value>314</value>
+            </enumMember>
+            <enumMember name="ROUTER6274_RP_V1_CARD">
+                <value>281</value>
+            </enumMember>
+            <enumMember name="ROUTER6274_1_10GE_48_BCM_V1_CARD">
+                <value>282</value>
+            </enumMember>
+            <enumMember name="ROUTER6274_10_100GE_32_4_BCM_V1_CARD">
+                <value>283</value>
+            </enumMember>
+            <enumMember name="ROUTER6274_PFT_DC_V1">
+                <value>284</value>
+            </enumMember>
+            <enumMember name="ROUTER6274_PFT_AC_V1">
+                <value>285</value>
+            </enumMember>
+            <enumMember name="ROUTER6274_BACKPLANE_V1">
+                <value>286</value>
+            </enumMember>
+            <enumMember name="ROUTER6274_10_25_100GE_12_16_8_BCM_V1_CARD">
+                <value>321</value>
+            </enumMember>
+            <enumMember name="ROUTER6274_10_100GE_CFP2_32_4_BCM_V1_CARD">
+                <value>328</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_RPSW_300_V1_CARD">
+                <value>340</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_RPSW_2400_V1_CARD">
+                <value>341</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_25GE_8_BCM_V1_CARD">
+                <value>342</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_100GE_2_BCM_V1_CARD">
+                <value>343</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_100GE_4_BCM_V1_CARD">
+                <value>344</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_1_10GE_8_BCM_V1_CARD">
+                <value>339</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_PWR_PFU_MODULE_DC_V1">
+                <value>345</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_PWR_PSU_MODULE_AC_V1">
+                <value>346</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_FAN_TRAY_V1">
+                <value>347</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_BACKPLANE_V1">
+                <value>348</value>
+            </enumMember>
+            <enumMember name="ROUTER6273_RPSW_800_V1_CARD">
+                <value>338</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_RPSW_800_SE">
+                <value>349</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_RPSW_800_V1_CARD">
+                <value>350</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_100GE_4_10_25GE_8_BCM_V1_CARD">
+                <value>351</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_BACKPLANE_V1">
+                <value>352</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_CPRI_9_V1_CARD">
+                <value>353</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_ROE_CPRI_9_V1_CARD">
+                <value>354</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_CONVERSION_CPRI_9_V1_CARD">
+                <value>355</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_25GE_8_BCM_V1_CARD">
+                <value>8342</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_100GE_2_BCM_V1_CARD">
+                <value>8343</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_1_10GE_8_BCM_V1_CARD">
+                <value>8339</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_PWR_PFU_MODULE_DC_V1">
+                <value>8345</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_PWR_PSU_MODULE_AC_V1">
+                <value>8346</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_FAN_TRAY_V1">
+                <value>8347</value>
+            </enumMember>
+            <enumMember name="ROUTER6673_100GE_4_BCM_V1_CARD">
+                <value>8344</value>
+            </enumMember>
+            <enumMember name="ROUTER6676_RPSW_360">
+                <value>356</value>
+            </enumMember>
+            <enumMember name="ROUTER6676_LC_1_10_25GE_20_100GE_4_PORT">
+                <value>357</value>
+            </enumMember>
+            <enumMember name="ROUTER6676_PM_DC">
+                <value>358</value>
+            </enumMember>
+            <enumMember name="ROUTER6676_FAN">
+                <value>359</value>
+            </enumMember>
+            <enumMember name="ROUTER6676_BACKPLANE">
+                <value>360</value>
+            </enumMember>
+            <enumMember name="ROUTER6678_RPSW_4800">
+                <value>361</value>
+            </enumMember>
+            <enumMember name="ROUTER6678_LC_100GE_30_400GE_4_PORT">
+                <value>362</value>
+            </enumMember>
+            <enumMember name="ROUTER6678_PSU_DC">
+                <value>363</value>
+            </enumMember>
+            <enumMember name="ROUTER6678_PSU_AC">
+                <value>364</value>
+            </enumMember>
+            <enumMember name="ROUTER6678_FAN">
+                <value>365</value>
+            </enumMember>
+            <enumMember name="ROUTER6678_BACKPLANE">
+                <value>366</value>
+            </enumMember>
+        </enum>
+        <enum name="AvailabilityStatus">
+            <description>The availability status is used to qualify the operational state.&#13;
+It indicates why the operational state has changed its value to disabled.</description>
+            <enumMember name="NO_STATUS">
+                <description>The resource is fully operational.&#13;
+The operational state is enabled.</description>
+                <value>0</value>
+            </enumMember>
+            <enumMember name="IN_TEST">
+                <description>The resource is undergoing a test procedure.&#13;
+If the administrative state is locked or shutting down then normal users are precluded from using the resource.</description>
+                <value>1</value>
+            </enumMember>
+            <enumMember name="FAILED">
+                <description>The resource has an internal fault that prevents it from operating.&#13;
+The operational state is disabled.</description>
+                <value>2</value>
+            </enumMember>
+            <enumMember name="POWER_OFF">
+                <description>The resource requires power to be applied and is not powered on.&#13;
+For example, a fuse or other protection device is known to have removed power or a low voltage condition has been detected. The operational state is disabled.</description>
+                <value>3</value>
+            </enumMember>
+            <enumMember name="OFF_LINE">
+                <description>The resource requires a routine operation to be performed to make it available.&#13;
+The operation may be manual or automatic, or both. The operational state is disabled.</description>
+                <value>4</value>
+            </enumMember>
+            <enumMember name="OFF_DUTY">
+                <description>The resource has been made inactive in accordance with a predetermined time schedule.&#13;
+Under normal conditions the control process can be expected to reactivate the resource at some scheduled time, and it is therefore considered to be optional. The operational state is enabled or disabled.</description>
+                <value>5</value>
+            </enumMember>
+            <enumMember name="DEGRADED">
+                <description>The service available from the resource is degraded in some respect.&#13;
+The degradation can for instance be in speed or operating capacity. Failure of a test or an unacceptable performance measurement has established that some or all services are not functional or are degraded due to the presence of a defect. However, the resource remains available for service, either because some services are satisfactory or because degraded service is preferable to no service at all. Object specific attributes may be defined to represent further information indicating, for example, which services are not functional and the nature of the degradation. The operational state is enabled.</description>
+                <value>6</value>
+            </enumMember>
+            <enumMember name="LOG_FULL">
+                <description>This indicates a log full condition.&#13;
+The semantics of are defined in CCITT Rec. X.735 | ISO/IEC 10164-6.</description>
+                <value>8</value>
+            </enumMember>
+            <enumMember name="DEPENDANCY">
+                <description>The resource cannot operate because some other resource on which it depends is unavailable.&#13;
+The resource it depends on is not represented by the same managed object. For example, a device is not accessible because its controller is powered off. The operational state is disabled.</description>
+                <value>10</value>
+            </enumMember>
+        </enum>
+        <enum name="AlarmSeverity">
+            <description>Alarm seveirities</description>
+            <enumMember name="MINOR">
+                <description>Minor</description>
+                <value>3</value>
+            </enumMember>
+            <enumMember name="CRITICAL">
+                <description>Critical</description>
+                <value>1</value>
+            </enumMember>
+            <enumMember name="MAJOR">
+                <description>Major</description>
+                <value>2</value>
+            </enumMember>
+            <enumMember name="WARNING">
+                <description>Warning</description>
+                <value>4</value>
+            </enumMember>
+        </enum>
+        <enum name="OperState">
+            <description>The operational states of a resource.</description>
+            <domainExtension domain="ECIM">
+                <extension name="originatingMimVersion" value="1"/>
+                <extension name="originatingMimRelease" value="6"/>
+                <extension name="originatingMimName" value="ECIM_CommonLibrary"/>
+            </domainExtension>
+            <enumMember name="DISABLED">
+                <description> The resource is  totally inoperable.</description>
+                <value>0</value>
+            </enumMember>
+            <enumMember name="ENABLED">
+                <description> The resource is partially or fully operable.</description>
+                <value>1</value>
+            </enumMember>
+        </enum>
+        <enum name="AlarmAdminState">
+            <description>Alarm administrative state</description>
+            <enumMember name="DISABLED">
+                <description>Disabled</description>
+                <value>2</value>
+            </enumMember>
+            <enumMember name="ENABLED">
+                <description>Enabled</description>
+                <value>1</value>
+            </enumMember>
+        </enum>
+        <enum name="AttachedUnitType">
+            <description>Only TDM is supported now.</description>
+            <enumMember name="CES_UNIT">
+                <value>1</value>
+            </enumMember>
+            <enumMember name="NOT_SUPPORTED">
+                <value>0</value>
+            </enumMember>
+            <enumMember name="ABIS_UNIT">
+                <value>2</value>
+            </enumMember>
+        </enum>
+        <enum name="ConnectorType">
+            <description>The type of peripheral connector.</description>
+            <enumMember name="GPIO">
+                <description>GPIO</description>
+                <value>0</value>
+            </enumMember>
+            <enumMember name="RJ45">
+                <description>RJ45</description>
+                <value>1</value>
+            </enumMember>
+            <enumMember name="RS232">
+                <description>RS232</description>
+                <value>2</value>
+            </enumMember>
+            <enumMember name="USB">
+                <description>USB</description>
+                <value>3</value>
+            </enumMember>
+        </enum>
+        <class name="Equipment">
+            <description>This is the Equipment MO.</description>
+            <systemCreated/>
+            <root/>
+            <attribute name="equipmentId">
+                <description>Unique identifier for this object instance.</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="userLabel">
+                <description>User friendly name for equipment object.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="Slot">
+            <description>This MO is used to represent a slot.</description>
+            <systemCreated/>
+            <action name="getHardwareItem">
+                <description>Retrieves hardware inventory information for the instance.&#13;
+&#13;
+The operation is used to retrieve the inventory information for a particular piece of equipment. It returns a reference to the hardwareItem MO from the HW Inventory fragment.</description>
+                <returnType>
+                    <moRef name="ManagedObject"/>
+                </returnType>
+            </action>
+            <attribute name="slotId">
+                <description>Unique identifier for this object instance.</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="holdingHWExpected">
+                <description>Is used to restrict the type of hardware that the slot supports.&#13;
+&#13;
+The attribute holdingHWExpected allows for pre-provisioning of hardware that will be inserted into the slot. This is a string whose acceptable values are listed within the attribute typeOfHw plus a particular value “emptySlot” that means that no ReplaceableUnit must be present within this slot. The attribute is used for manually configuring the replaceable unit in this slot.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="holdingHWActual">
+                <description>Is a string that represents the hardware that is currently inserted in the slot.&#13;
+&#13;
+The allowed values are the same as for holdingHWExpected plus the value “unknown”. It is a read-only attribute that exports the detected replaceable unit type. Normally there is no mismatch between attributes holdingHWExpected and holdingHWActual but both the case where the equipment can detect the replaceable unit insertion is considered, as well as the case where the replaceable unit is different from the expected unit.</description>
+                <readOnly/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="position">
+                <description>.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <structRef name="Position">
+                        <mimName>Router6000Equipment</mimName>
+                    </structRef>
+                </dataType>
+            </attribute>
+            <attribute name="userLabel">
+                <description>User friendly name for the equipment object.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="typeOfHw">
+                <description>Free-form string that identifies the object instance hardware type. &#13;
+&#13;
+It is recommended that the content of this attribute is given a standard Ericsson product number and revision, e.g. ROJ 208 842/3 R2B.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="Shelf">
+            <description>This MO is used to represent a shelf.</description>
+            <systemCreated/>
+            <action name="getHardwareItem">
+                <description>Retrieves hardware inventory information for the instance.&#13;
+&#13;
+The operation is used to retrieve the inventory information for a particular piece of equipment. It returns a reference to the hardwareItem MO from the HW Inventory fragment.</description>
+                <returnType>
+                    <moRef name="ManagedObject"/>
+                </returnType>
+            </action>
+            <attribute name="shelfId">
+                <description>Unique identifier for this object instance.</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="maxNumberOfSlots">
+                <description>Defines the number of physical slots available in the shelf.</description>
+                <readOnly/>
+                <dataType>
+                    <uint32>
+                        <defaultValue>1</defaultValue>
+                    </uint32>
+                </dataType>
+            </attribute>
+            <attribute name="position">
+                <description>Position</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <structRef name="Position">
+                        <mimName>Router6000Equipment</mimName>
+                    </structRef>
+                </dataType>
+            </attribute>
+            <attribute name="userLabel">
+                <description>User friendly name for the equipment object.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="typeOfHw">
+                <description>Free-form string that identifies the object instance hardware type. &#13;
+&#13;
+It is recommended that the content of this attribute is given a standard Ericsson product number and revision, e.g. ROJ 208 842/3 R2B.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="FanModule">
+            <description>This MO is used to represent a fan module.</description>
+            <systemCreated/>
+            <action name="getHardwareItem">
+                <description>Retrieves hardware inventory information for the instance.&#13;
+&#13;
+The operation is used to retrieve the inventory information for a particular piece of equipment. It returns a reference to the hardwareItem MO from the HW Inventory fragment.</description>
+                <returnType>
+                    <moRef name="ManagedObject"/>
+                </returnType>
+            </action>
+            <attribute name="fanModuleId">
+                <description>Fan module ID</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="fanNumber">
+                <description>Indicates the number of fans present on the module.</description>
+                <readOnly/>
+                <dataType>
+                    <int32/>
+                </dataType>
+            </attribute>
+            <attribute name="fanPerformanceStatus">
+                <description>Indicates the performance status of any fan within module.</description>
+                <readOnly/>
+                <dataType>
+                    <enumRef name="FanPerformanceStatus">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="fanSpeed">
+                <description>Current speed in rpm of each fan.</description>
+                <readOnly/>
+                <dataType>
+                    <sequence>
+                        <int32/>
+                        <minLength>1</minLength>
+                    </sequence>
+                </dataType>
+            </attribute>
+            <attribute name="availStatus">
+                <description>Available Status</description>
+                <readOnly/>
+                <dataType>
+                    <enumRef name="AvailabilityStatus">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="position">
+                <description>.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <structRef name="Position">
+                        <mimName>Router6000Equipment</mimName>
+                    </structRef>
+                </dataType>
+            </attribute>
+            <attribute name="userLabel">
+                <description>User friendly name for the equipment object.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="typeOfHw">
+                <description>Free-form string that identifies the object instance hardware type. &#13;
+&#13;
+It is recommended that the content of this attribute is given a standard Ericsson product number and revision, e.g. ROJ 208 842/3 R2B.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="Card">
+            <description>Controller card or line card</description>
+            <systemCreated/>
+            <action name="reset">
+                <description>Used to restart the HW entity.&#13;
+This action takes two parameters resetType and gracefulReset.</description>
+                <returnType>
+                    <boolean/>
+                </returnType>
+                <parameter name="resetType">
+                    <description>Type of reset&#13;
+&#13;
+Possible values:&#13;
+SOFT = restart the hardware without removing power.&#13;
+HARD = restart the hardware where the power is cycled (turned on and off or the equivalent).&#13;
+FACTORY_DEFAULT = restart the hardware where the power is cycled (turned on and off or the equivalent) and the hardware is reset to the factory default settings.&#13;
+</description>
+                    <in/>
+                    <dataType>
+                        <enumRef name="ResetType">
+                            <mimName>Router6000Equipment</mimName>
+                        </enumRef>
+                    </dataType>
+                </parameter>
+                <parameter name="gracefulReset">
+                    <description>Boolean that if true specifies a graceful reset.&#13;
+E.g., allows time to execute a shutdown sequence.</description>
+                    <in/>
+                    <dataType>
+                        <boolean/>
+                    </dataType>
+                </parameter>
+            </action>
+            <action name="getHardwareItem">
+                <description>Retrieves hardware inventory information for the instance.&#13;
+&#13;
+The operation is used to retrieve the inventory information for a particular piece of equipment. It returns a reference to the hardwareItem MO from the HW Inventory fragment.</description>
+                <returnType>
+                    <moRef name="ManagedObject"/>
+                </returnType>
+            </action>
+            <attribute name="cardType">
+                <description>The inserted card type</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="CardType">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="replaceableUniteId">
+                <description>Unique identifier for this object instance.</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="position">
+                <description>Position</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <structRef name="Position">
+                        <mimName>Router6000Equipment</mimName>
+                    </structRef>
+                </dataType>
+            </attribute>
+            <attribute name="operationalState">
+                <description>The operational state of a replaceable unit.</description>
+                <readOnly/>
+                <dataType>
+                    <enumRef name="OperState">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="availStatus">
+                <description>The availability status contains details about the operational state.</description>
+                <readOnly/>
+                <dataType>
+                    <enumRef name="AvailabilityStatus">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="administrativeState">
+                <description>The administrative state of a replaceable unit.</description>
+                <dataType>
+                    <enumRef name="AdmState">
+                        <defaultValue>NO_SHUTDOWN</defaultValue>
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="userLabel">
+                <description>User friendly name for the equipment object.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="typeOfHw">
+                <description>Free-form string that identifies the object instance hardware type. &#13;
+&#13;
+It is recommended that the content of this attribute is given a standard Ericsson product number and revision, e.g. ROJ 208 842/3 R2B.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="PowerModule">
+            <description>Power module</description>
+            <systemCreated/>
+            <action name="getHardwareItem">
+                <description>Retrieves hardware inventory information for the instance.&#13;
+&#13;
+The operation is used to retrieve the inventory information for a particular piece of equipment. It returns a reference to the hardwareItem MO from the HW Inventory fragment.</description>
+                <returnType>
+                    <moRef name="ManagedObject"/>
+                </returnType>
+            </action>
+            <attribute name="powerModuleId">
+                <description>Power module ID</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="temp">
+                <description>The temperature of the Power Module</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <int32/>
+                </dataType>
+            </attribute>
+            <attribute name="availStatus">
+                <description>Available status</description>
+                <readOnly/>
+                <dataType>
+                    <enumRef name="AvailabilityStatus">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="position">
+                <description>.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <structRef name="Position">
+                        <mimName>Router6000Equipment</mimName>
+                    </structRef>
+                </dataType>
+            </attribute>
+            <attribute name="userLabel">
+                <description>User friendly name for the equipment object.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="typeOfHw">
+                <description>Free-form string that identifies the object instance hardware type. &#13;
+&#13;
+It is recommended that the content of this attribute is given a standard Ericsson product number and revision, e.g. ROJ 208 842/3 R2B.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="Input">
+            <description>The input alarm IO ports</description>
+            <systemCreated/>
+            <attribute name="inputId">
+                <description>Input alarm IO port ID</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="activeSignal">
+                <description>The active signal type</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="ActiveAlarmSignal">
+                        <defaultValue>LOW</defaultValue>
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="description">
+                <description>The description, which is used when the alarm is raised.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="adminState">
+                <description>The alarm administrative state</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="AlarmAdminState">
+                        <defaultValue>DISABLED</defaultValue>
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="severity">
+                <description>The alarm severity for the raised alarm.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="AlarmSeverity">
+                        <defaultValue>CRITICAL</defaultValue>
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="AlarmPort">
+            <description>The alarm port for the external alarm IO.</description>
+            <systemCreated/>
+            <attribute name="alarmPortId">
+                <description>The unique Id of the alarm port</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="connectorType">
+                <description>The type of peripheral connector, for example GPIO, RJ45, RS232 or USB etc.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="ConnectorType">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="numberOfInputPin">
+                <description>The number of the pins those are used to input alarm port</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <uint8/>
+                </dataType>
+            </attribute>
+            <attribute name="numberOfOutputPin">
+                <description>The number of the pins those are used to output alarm port</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <uint8/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="Output">
+            <description>The output alarm IO ports</description>
+            <systemCreated/>
+            <attribute name="outputId">
+                <description>The output alarm IO port ID</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="description">
+                <description>The description</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="adminState">
+                <description>The alarm administrative state</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="AlarmAdminState">
+                        <defaultValue>DISABLED</defaultValue>
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="AttachedUnit">
+            <description>&lt;p&gt;The Attached Unit which will be attached to R6000 ethernet port. It runs the specific service. However it is managed through R6000 north bound.&lt;/p&gt;</description>
+            <action name="reset">
+                <description>Used to restart the HW entity.&#13;
+This action takes two parameters resetType and gracefulReset.</description>
+                <returnType>
+                    <boolean/>
+                </returnType>
+                <parameter name="resetType">
+                    <description>Type of reset&#13;
+&#13;
+Possible values:&#13;
+SOFT = restart the hardware without removing power.&#13;
+HARD = restart the hardware where the power is cycled (turned on and off or the equivalent).&#13;
+FACTORY_DEFAULT = restart the hardware where the power is cycled (turned on and off or the equivalent) and the hardware is reset to the factory default settings.&#13;
+</description>
+                    <in/>
+                    <dataType>
+                        <enumRef name="ResetType">
+                            <mimName>Router6000Equipment</mimName>
+                        </enumRef>
+                    </dataType>
+                </parameter>
+                <parameter name="gracefulReset">
+                    <description>Boolean that if true specifies a graceful reset.&#13;
+E.g., allows time to execute a shutdown sequence.</description>
+                    <in/>
+                    <dataType>
+                        <boolean>
+                            <defaultValue>false</defaultValue>
+                        </boolean>
+                    </dataType>
+                </parameter>
+            </action>
+            <action name="getHardwareItem">
+                <description>Retrieves hardware inventory information for the instance.&#13;
+&#13;
+The operation is used to retrieve the inventory information for a particular piece of equipment. It returns a reference to the hardwareItem MO from the HW Inventory fragment.</description>
+                <returnType>
+                    <moRef name="ManagedObject"/>
+                </returnType>
+            </action>
+            <attribute name="connectedAUType">
+                <description>The actualy connected AU Type. </description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="AttachedUnitType">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="configuredAUType">
+                <description>Currently only TDM AU is supported by R6000.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="AttachedUnitType">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="temp">
+                <description>The temperature of the AU.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <int32/>
+                </dataType>
+            </attribute>
+            <attribute name="attachedPort">
+                <description>the ethernet port where the AU is attached to. It should be like slot/port.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="timeOfConnection">
+                <description>Time in us to show how long the AU is connected to R6000.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <uint64/>
+                </dataType>
+            </attribute>
+            <attribute name="timeOfRunning">
+                <description>Time in us to show how long the AU is running.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <int64/>
+                </dataType>
+            </attribute>
+            <attribute name="replaceableUniteId">
+                <description>Unique identifier for this object instance.</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="position">
+                <description>Position</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <structRef name="Position">
+                        <mimName>Router6000Equipment</mimName>
+                    </structRef>
+                </dataType>
+            </attribute>
+            <attribute name="operationalState">
+                <description>The operational state of a replaceable unit.</description>
+                <readOnly/>
+                <dataType>
+                    <enumRef name="OperState">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="availStatus">
+                <description>The availability status contains details about the operational state.</description>
+                <readOnly/>
+                <dataType>
+                    <enumRef name="AvailabilityStatus">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="administrativeState">
+                <description>The administrative state of a replaceable unit.</description>
+                <dataType>
+                    <enumRef name="AdmState">
+                        <defaultValue>NO_SHUTDOWN</defaultValue>
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="userLabel">
+                <description>User friendly name for the equipment object.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="typeOfHw">
+                <description>Free-form string that identifies the object instance hardware type. &#13;
+&#13;
+It is recommended that the content of this attribute is given a standard Ericsson product number and revision, e.g. ROJ 208 842/3 R2B.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+        </class>
+        <class name="PFT">
+            <description>PFT is combination of Fan Module and Power Module</description>
+            <action name="getHardwareItem">
+                <description>Retrieves hardware inventory information for the instance.&#13;
+&#13;
+The operation is used to retrieve the inventory information for a particular piece of equipment. It returns a reference to the hardwareItem MO from the HW Inventory fragment.</description>
+                <returnType>
+                    <moRef name="ManagedObject"/>
+                </returnType>
+            </action>
+            <attribute name="pFTId">
+                <description>index</description>
+                <mandatory/>
+                <noNotification/>
+                <restricted/>
+                <key/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="availStatus">
+                <description>Available Status</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="AvailabilityStatus">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="temperature">
+                <description>The temperature of the Power Module</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <int32/>
+                </dataType>
+            </attribute>
+            <attribute name="fanNumber">
+                <description>Indicates the number of fans present on the module.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <int32/>
+                </dataType>
+            </attribute>
+            <attribute name="fanSpeed">
+                <description>Current speed in rpm of each fan.</description>
+                <readOnly/>
+                <dataType>
+                    <sequence>
+                        <int32/>
+                        <minLength>0</minLength>
+                        <nonUnique/>
+                    </sequence>
+                </dataType>
+            </attribute>
+            <attribute name="fanPerformanceStatus">
+                <description>Indicates the performance status of any fan within module.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <enumRef name="FanPerformanceStatus">
+                        <mimName>Router6000Equipment</mimName>
+                    </enumRef>
+                </dataType>
+            </attribute>
+            <attribute name="position">
+                <description>the position of PFT</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <structRef name="Position">
+                        <mimName>Router6000Equipment</mimName>
+                    </structRef>
+                </dataType>
+            </attribute>
+            <attribute name="userLabel">
+                <description>User friendly name for the equipment object.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+            <attribute name="typeOfHw">
+                <description>Free-form string that identifies the object instance hardware type. &#13;
+&#13;
+It is recommended that the content of this attribute is given a standard Ericsson product number and revision, e.g. ROJ 208 842/3 R2B.</description>
+                <domainExtension domain="ECIM">
+                    <extension name="isNillable" value="true"/>
+                </domainExtension>
+                <readOnly/>
+                <isNillable/>
+                <dataType>
+                    <string/>
+                </dataType>
+            </attribute>
+        </class>
+        <relationship name="Shelf_to_Slot">
+            <containment>
+                <parent>
+                    <hasClass name="Shelf">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="Slot">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>1</min>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+        <relationship name="Slot_to_Card">
+            <containment>
+                <parent>
+                    <hasClass name="Slot">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="Card">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                        <max>1</max>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+        <relationship name="Slot_to_FanModule">
+            <containment>
+                <parent>
+                    <hasClass name="Slot">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="FanModule">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                        <max>1</max>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+        <relationship name="Slot_to_PowerModule">
+            <containment>
+                <parent>
+                    <hasClass name="Slot">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="PowerModule">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                        <max>1</max>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+        <relationship name="Shelf_to_AlarmPort">
+            <containment>
+                <parent>
+                    <hasClass name="Shelf">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="AlarmPort">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+        <relationship name="AlarmPort_to_Input">
+            <containment>
+                <parent>
+                    <hasClass name="AlarmPort">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="Input">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+        <relationship name="Equipment_to_Shelf">
+            <containment>
+                <parent>
+                    <hasClass name="Equipment">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="Shelf">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>1</min>
+                        <max>1</max>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+        <relationship name="AlarmPort_to_Output">
+            <containment>
+                <parent>
+                    <hasClass name="AlarmPort">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="Output">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+        <relationship name="Equipment_To_AttachedUnit">
+            <containment>
+                <parent>
+                    <hasClass name="Equipment">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="AttachedUnit">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="true"/>
+                    <extension name="canDelete" value="true"/>
+                </domainExtension>
+            </containment>
+        </relationship>
+        <relationship name="Slot_to_PFT">
+            <containment>
+                <parent>
+                    <hasClass name="Slot">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="PFT">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>0</min>
+                        <max>1</max>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+    </mim>
+    <interMim>
+        <relationship name="ManagedElement_to_Equipment">
+            <containment>
+                <parent>
+                    <hasClass name="ManagedElement">
+                        <mimName>ComTop</mimName>
+                    </hasClass>
+                </parent>
+                <child>
+                    <hasClass name="Equipment">
+                        <mimName>Router6000Equipment</mimName>
+                    </hasClass>
+                    <cardinality>
+                        <min>1</min>
+                        <max>1</max>
+                    </cardinality>
+                </child>
+                <domainExtension domain="ECIM">
+                    <extension name="canCreate" value="false"/>
+                    <extension name="canDelete" value="false"/>
+                </domainExtension>
+                <notCreatable/>
+                <notDeleteable/>
+            </containment>
+        </relationship>
+    </interMim>
+</models>

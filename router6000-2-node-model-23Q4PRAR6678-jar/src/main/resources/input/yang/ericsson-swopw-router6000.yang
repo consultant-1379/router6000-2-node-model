@@ -1,0 +1,158 @@
+module ericsson-swopw-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-swopw-router6000";
+
+  prefix "swopwrouter6000";
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-vpws-router6000 {
+    prefix "vpwsrouter6000";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  import ietf-inet-types {
+    prefix "inet";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-swopw-router6000
+     Copyright (c) 2018 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-08-18" {
+    description
+      "leaf type change for pw swover params";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "1";
+  }
+
+  revision "2018-06-08" {
+    description
+      "initial revision";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  /*
+  switchover pseudowire pw-id <pw-id> peer <peer-address> [context local]
+  */
+
+  list switchover {
+    description
+      "top level switchover";
+    key "switchover";
+    leaf switchover {
+      type string;
+      description
+        "switchover command";
+    }
+    list pseudowire {
+      description
+        "pseudowire connection";
+      key "pseudowire";
+      leaf pseudowire {
+        type string;
+        description
+          "pseudowire connection";
+      }
+    }
+    container swopw {
+      leaf pw-id {
+        type string;
+        description
+          "pseudowire instance";
+        mandatory true;
+      }
+      leaf peer {
+        type string;
+        description
+          "IPv4 Peer address of the pseudowire";
+        mandatory true;
+      }
+      leaf context {
+        type string;
+        description
+          "context address";
+        mandatory false;
+      }
+    }
+  }
+
+  rpc switchover-pseudowire {
+    status obsolete;
+    description
+      "switchover pseudowire instance to standby";
+    input {
+      leaf pw-id {
+        type string {
+          pattern '(^[1-9]\d{0,3}$)|(^[1-5]\d{4}$)|(^6[0-4]\d{3}$)|(^65[0-4]\d{2}$)|(^655[0-2]\d$)|(^6553[0-5]\d{0}$)|(^(([1-9]\d{0,3})|([1-5]\d{4})|(6[0-4]\d{3})|(65[0-4]\d{2})|(655[0-2]\d)|(6553[0-5]\d{0}))-(([1-9]\d{0,3})|([1-5]\d{4})|(6[0-4]\d{3})|(65[0-4]\d{2})|(655[0-2]\d)|(6553[0-5]\d{0}))$)';
+        }
+        mandatory true;
+        description
+          "peer instance";
+      }
+      leaf peer {
+        type string {
+          pattern '(^[1-9]\d{0,3}$)|(^[1-5]\d{4}$)|(^6[0-4]\d{3}$)|(^65[0-4]\d{2}$)|(^655[0-2]\d$)|(^6553[0-5]\d{0}$)|(^(([1-9]\d{0,3})|([1-5]\d{4})|(6[0-4]\d{3})|(65[0-4]\d{2})|(655[0-2]\d)|(6553[0-5]\d{0}))-(([1-9]\d{0,3})|([1-5]\d{4})|(6[0-4]\d{3})|(65[0-4]\d{2})|(655[0-2]\d)|(6553[0-5]\d{0}))$)';
+        }
+        mandatory true;
+        description
+          "peer ip address";
+      }
+      leaf context {
+        type string {
+          pattern '(^[1-9]\d{0,3}$)|(^[1-5]\d{4}$)|(^6[0-4]\d{3}$)|(^65[0-4]\d{2}$)|(^655[0-2]\d$)|(^6553[0-5]\d{0}$)|(^(([1-9]\d{0,3})|([1-5]\d{4})|(6[0-4]\d{3})|(65[0-4]\d{2})|(655[0-2]\d)|(6553[0-5]\d{0}))-(([1-9]\d{0,3})|([1-5]\d{4})|(6[0-4]\d{3})|(65[0-4]\d{2})|(655[0-2]\d)|(6553[0-5]\d{0}))$)';
+        }
+        mandatory false;
+        description
+          "peer context";
+      }
+    }
+  }
+
+  rpc swo-pw-action {
+    description
+      "switchover pseudowire instance to standby peer";
+    input {
+      leaf pw-id {
+        type uint32 {
+          range "1..4294967295";
+        }
+        mandatory true;
+        description
+          "peer instance";
+      }
+      leaf peer {
+        type inet:ipv4-address;
+        mandatory true;
+        description
+          "peer ip address";
+      }
+      leaf context {
+        type string;
+        mandatory false;
+        description
+          "peer context";
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+module ericsson-monitor-capture-router6000 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-monitor-capture-router6000";
+
+  prefix "mcpr6k";
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-monitor-capture-router6000
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-07-11" {
+    description
+      "initial revision";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  augment "/ctxsr6k:contexts" {
+    description
+      "ericsson-monitor-capture";
+    /*
+    monitor-capture (capture-name) [ count (count-value) ] [
+     timeout (timeout-value) ] [ packet-truncated ]
+    */
+    list monitor-capture {
+      key "capture-name";
+      description
+        "Config monitor capture";
+      leaf capture-name {
+        type string;
+        description
+          "Name of one monitor capture";
+      }
+      leaf count {
+        type uint32 {
+          range "1..1200000";
+        }
+        default "10000";
+        description
+          "Configure the limit of expected captured packets";
+      }
+      leaf timeout {
+        type uint16 {
+          range "5..600";
+        }
+        default "60";
+        units seconds;
+        description
+          "Configure monitor capture timeout";
+      }
+      leaf packet-truncated {
+        type empty;
+        description
+          "Truncated packet will be captured instead of
+           capturing full packet";
+      }
+    }
+  }
+
+}

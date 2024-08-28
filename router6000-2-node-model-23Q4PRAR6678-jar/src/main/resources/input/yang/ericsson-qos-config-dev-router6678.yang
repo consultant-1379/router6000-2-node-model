@@ -1,0 +1,96 @@
+module ericsson-qos-config-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-qos-config-dev-router6678";
+
+  prefix "qoscfgrouter6678";
+
+  import ericsson-inner-port-router6000 {
+    prefix "innerportrouter6000";
+  }
+
+  import ericsson-qos-config-router6000 {
+    prefix "qoscfgr6k";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  import ericsson-context-router6000 {
+    prefix "ctxr6k";
+  }
+
+  import ericsson-mpls-router6000 {
+    prefix "mplsr6k";
+  }
+
+    import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-qos-config-dev-router6678
+     Copyright (c) 2020 Ericsson AB.
+     All rights reserved";
+
+
+  revision "2023-03-10" {
+    description
+      "deviation file for 6678";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+
+  revision "2022-11-22" {
+    description
+      "deviation file for 6678";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  deviation "/ctxsr6k:contexts/innerportrouter6000:recycling-card/innerportrouter6000:mvpn-bud" {
+     deviate not-supported;
+  }
+
+  deviation "/ctxsr6k:contexts/innerportrouter6000:recycling-card/innerportrouter6000:egress-mirror" {
+     deviate not-supported;
+  }
+
+  deviation "/ctxsr6k:contexts/innerportrouter6000:ethernet-oam-throughput-card" {
+     deviate not-supported;
+  }
+
+  deviation "/ctxsr6k:contexts/ctxr6k:context/ctxr6k:router/mplsr6k:mpls/mplsr6k:propagate/qoscfgr6k:qos/qoscfgr6k:to/qoscfgr6k:mpls/qoscfgr6k:class-map-option/qoscfgr6k:l2vpn-class-map" {
+     deviate not-supported;
+  }
+
+  deviation "/ctxsr6k:contexts/innerportrouter6000:recycling-card/innerportrouter6000:inter-context-routing/innerportrouter6000:bandwidth" {
+    deviate replace {
+      type uint32 {
+        range "1000000..1200000000";
+      }
+    }
+  }
+
+  deviation "/ctxsr6k:contexts/innerportrouter6000:recycling-card/innerportrouter6000:DSCP-Remark/innerportrouter6000:bandwidth" {
+    deviate replace {
+      type uint32 {
+        range "1000000..1200000000";
+      }
+    }
+  }
+
+}

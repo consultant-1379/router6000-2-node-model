@@ -1,0 +1,50 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-pim-dev-router6678 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-pim-dev-router6678";
+
+  prefix "pimdevrouter6678";
+
+  import ericsson-pim-router6000{
+    prefix "pimr6k";
+  }
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+  import ericsson-contexts-router6000 {
+   prefix "ctxsr6k";
+  }
+  import ericsson-context-router6000 {
+   prefix "ctxr6k";
+  }
+  
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-pim-dev-router6678
+     Copyright (c) 2022 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-11-15" {
+    description
+      "inband-signaling mldp no supported";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+   /*inband-signaling mldp not supported*/
+    deviation "/ctxsr6k:contexts/ctxr6k:context/ctxr6k:router/pimr6k:pim/pimr6k:inband-signaling-mldp" {
+      deviate not-supported;
+    }
+}

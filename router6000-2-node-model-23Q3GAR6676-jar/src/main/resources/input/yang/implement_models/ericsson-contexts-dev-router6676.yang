@@ -1,0 +1,86 @@
+/*
+    This is written manually.
+*/
+
+module ericsson-contexts-dev-router6676 {
+  yang-version "1";
+
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-contexts-dev-router6676";
+
+  prefix "ctxsvrouter6676";
+
+  import ietf-yang-types {
+    prefix "yang";
+  }
+
+  import ericsson-notifications {
+    prefix "notife";
+  }
+
+  import ericsson-yang-extensions {
+    prefix "yexte";
+  }
+
+  import ericsson-contexts-router6000 {
+    prefix "ctxsr6k";
+  }
+
+  organization
+    "Ericsson AB";
+
+  contact
+    "Web:   <http://www.ericsson.com>";
+
+  description
+    "ericsson-contexts-dev-router6676
+     Copyright (c) 2020 Ericsson AB.
+     All rights reserved";
+
+  revision "2022-03-09" {
+    description
+      "Modified old load-balance container";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "1";
+  }
+
+  revision "2021-01-29" {
+    description
+      "remove deviation for ifindex-persistence";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+
+  revision "2020-06-16" {
+    description
+      "deviation for load-balance cli";
+    reference
+      "rfc6020";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  /*load-balance-new ip*/
+  /*hide ctxsr6k:contexts/ctxsr6k:service->load-balance-new->ip*/
+  deviation "/ctxsr6k:contexts/ctxsr6k:service/ctxsr6k:load-balance-new/ctxsr6k:ip" {
+    deviate not-supported;
+  }
+
+  /*load-balance-new link-group*/
+  /*hide ctxsr6k:contexts/ctxsr6k:service->load-balance-new->link-group*/
+  deviation "/ctxsr6k:contexts/ctxsr6k:service/ctxsr6k:load-balance-new/ctxsr6k:link-group" {
+    deviate not-supported;
+  }
+
+  /*hide global->service->load-balance-new->mpls->payload*/
+  deviation "/ctxsr6k:contexts/ctxsr6k:service/ctxsr6k:load-balance-new/ctxsr6k:mpls-payload" {
+    deviate not-supported;
+  }
+
+}

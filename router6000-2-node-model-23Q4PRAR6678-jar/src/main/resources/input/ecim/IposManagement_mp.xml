@@ -1,0 +1,72 @@
+<!--
+        Copyright (c) 2018 Ericsson AB.
+        All rights reserved
+
+        DX ECIM Tool-chain generated this file on Dec 4, 2014 4:16:21 PM using:
+        * com.ericsson.ecim.m2m 2.9.1.201402031455
+        * com.ericsson.ecim.dsl 2.9.1.201402031455
+        * com.ericsson.ecim.edm 2.9.1.201402031455
+--><!DOCTYPE models SYSTEM "mp.dtd">
+<models>
+  <dtdVersion>G</dtdVersion>
+  <momMetaData>
+    <momTitle>title</momTitle>
+    <momSubTitle>sub title</momSubTitle>
+    <momIdentity>
+      <docNum>0</docNum>
+      <docLang>English</docLang>
+      <docRev>0</docRev>
+      <docDate>date</docDate>
+    </momIdentity>
+  </momMetaData>
+  <mim author="Chin Chen" contact="ESHICHN" correction="1" date="" docNo="" name="IposManagement" namespace="urn:com:ericsson:ecim:IposManagement" namespacePrefix="iposmanagement" organization="" release="0" revision="" version="1">
+    <description>Configure management attributes.</description>
+    <class name="Management">
+      <description>Configure management attributes.</description>
+      <systemCreated/>
+      <root/>
+      <attribute name="managementId">
+        <description>The value component of the RDN.</description>
+        <mandatory/>
+        <noNotification/>
+        <restricted/>
+        <key/>
+        <dataType>
+          <string/>
+        </dataType>
+      </attribute>
+      <attribute name="context">
+        <description>Set the management context.</description>
+        <domainExtension domain="ECIM">
+          <extension name="isNillable" value="true"/>
+        </domainExtension>
+        <isNillable/>
+        <dataType>
+          <moRef name="Context">
+            <mimName>Context</mimName>
+          </moRef>
+        </dataType>
+      </attribute>
+    </class>
+  </mim>
+  <interMim>
+    <relationship name="SysM_to_Management">
+      <containment>
+        <parent>
+          <hasClass name="SysM">
+            <mimName>ComSysM</mimName>
+          </hasClass>
+        </parent>
+        <child>
+          <hasClass name="Management">
+            <mimName>IposManagement</mimName>
+          </hasClass>
+          <cardinality>
+            <min>1</min>
+            <max>1</max>
+          </cardinality>
+        </child>
+      </containment>
+    </relationship>
+  </interMim>
+</models>
